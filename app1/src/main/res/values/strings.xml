@@ -3,4 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_login">login</string>
+    <string name="pass_hint">password</string>
+    <string name="login_btn">Login</string>
+    <string name="email_hint">E-mail address</string>
+    <string name="title_activity_home">home</string>
+    <string name="login_page">LOGIN</string>
+    <string name="appoint_me">Appoint Me!</string>
 </resources>

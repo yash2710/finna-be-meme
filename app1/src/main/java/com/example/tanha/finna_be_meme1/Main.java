@@ -20,7 +20,7 @@ public class Main extends AppCompatActivity {
         }catch(Exception e){
 
         }finally {
-            startActivity(new Intent(this,MainActivity.class));
+            startActivity(new Intent(this,login.class));
             finish();
         }
 
