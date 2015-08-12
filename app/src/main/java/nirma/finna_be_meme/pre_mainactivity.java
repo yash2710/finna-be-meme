@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import com.parse.Parse;
 
 
 public class pre_mainactivity extends AppCompatActivity {
@@ -17,27 +17,19 @@ public class pre_mainactivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                final Intent mainIntent = new Intent(pre_mainactivity.this,MainActivity.class);
+                final Intent mainIntent = new Intent(pre_mainactivity.this,DoctorDetails.class);
+                mainIntent.putExtra("hi","hi");
                 pre_mainactivity.this.startActivity(mainIntent);
                 pre_mainactivity.this.finish();
             }
-        }, 5000);
+        }, 1000);
         this.setTitle("Appoint Me!");
-    }
+        try {
+            Parse.enableLocalDatastore(this);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_pre_mainactivity, menu);
-        return true;
-    }
+            Parse.initialize(this, "Xyl1BqgIJljeUZHslYJIOZ0oX1OH9d7GeXzfcdwt", "nANyTRxoUroiC98Oz0rBVJNXBs8XxDAUbSJ9z8ap");
+        }catch(Exception e){
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
