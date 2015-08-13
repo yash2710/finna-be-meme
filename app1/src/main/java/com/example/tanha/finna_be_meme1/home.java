@@ -2,16 +2,33 @@ package com.example.tanha.finna_be_meme1;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 
 
-public class home extends ActionBarActivity {
+public class home extends AppCompatActivity{
+    private RecyclerView view;
+    //private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        view=(RecyclerView)findViewById(R.id.recycler_view);
+
+        view.setHasFixedSize(true);
+        final LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        view.setLayoutManager(mLayoutManager);
+
+
+        mAdapter = new MyAdapter();
+        view.setAdapter(mAdapter);
     }
 
     @Override
