@@ -1,42 +1,25 @@
 package nirma.finna_be_meme;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import nirma.finna_be_meme.SlidingTabLayout;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static android.support.v4.app.ActivityCompat.startActivity;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -112,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.navigate) {
             startActivity(new Intent(this, SubActivity.class));
+        }
+
+        if (id == R.id.details){
+            Intent i = new Intent(MainActivity.this,DoctorDetails.class);
+            i.putExtra("hhi","hi");
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

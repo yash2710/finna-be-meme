@@ -17,7 +17,7 @@ public class pre_mainactivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                final Intent mainIntent = new Intent(pre_mainactivity.this,DoctorDetails.class);
+                final Intent mainIntent = new Intent(pre_mainactivity.this,MainActivity.class);
                 mainIntent.putExtra("hi","hi");
                 pre_mainactivity.this.startActivity(mainIntent);
                 pre_mainactivity.this.finish();
