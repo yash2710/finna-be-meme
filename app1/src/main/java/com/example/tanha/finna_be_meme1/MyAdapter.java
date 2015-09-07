@@ -1,5 +1,6 @@
 package com.example.tanha.finna_be_meme1;
 
+import android.nfc.Tag;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,7 +23,7 @@ import java.util.List;
 class Appoint {
     String id;
     String name;
-
+    public Appoint(){}
     public Appoint(String id,String name){
         this.id=id;
         this.name=name;
@@ -30,7 +33,7 @@ class Appoint {
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     //private ArrayList<String> mDataset;
-    private ArrayList<Appoint> appoint;
+    private List<Appoint> appoint= Collections.emptyList();
     /*private ArrayList<ParseObject> mDataset;
     private ArrayList<String> p_id=new ArrayList<String>();
     private ArrayList<String> p_name;*/
@@ -67,9 +70,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
                         String id = (String) list.get(i).get("p_id");
                         String name=(String)list.get(i).get("p_name");
-                        Log.d("hi",name);
+
                         Appoint a=new Appoint(id,name);
                         appoint.add(a);
+                        Log.d("hi", a.id + a.name);
+                        Log.d("Hello",appoint.get(i).id+appoint.get(i).name);
                     }
                 } else {
                     Log.d("dr_username", "Error: " + e.getMessage());
@@ -77,8 +82,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
             }
         });
-       /*mDataset=new ArrayList<String>(20);
-        for(int i=0;i<20;i++)
+       //mDataset=new ArrayList<String>(20);
+        /*for(int i=0;i<20;i++)
         {
             mDataset.add(new String("$"+(i+1)+"$"));
         }*/
@@ -86,14 +91,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.d("disp", "display");
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view, parent, false);
         ViewHolder vh = new ViewHolder(v);
-        Log.d("disp", "display");
+
         return vh;
     }
 
 
     public void onBindViewHolder(ViewHolder holder, int position) {
+
         final String Id =(appoint.get(position)).id;
         final String name = (appoint.get(position)).name;
         holder.txtHeader.setText("ID: "+Id);
@@ -103,7 +110,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        //return p_id.size();
+        
+        Log.d("hfhd", "a" + appoint.size());
+
         return appoint.size();
     }
 }
