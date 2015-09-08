@@ -10,4 +10,7 @@
     <string name="title_activity_home">home</string>
     <string name="login_page">LOGIN</string>
     <string name="appoint_me">Appoint Me!</string>
+    <string name="title_activity_test">test</string>
+    <string name="test">Large Text</string>
+    <string name="Test">test</string>
 </resources>
