@@ -1,7 +1,9 @@
 package nirma.finna_be_meme;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -118,16 +120,16 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             //MyFragment myFragment = MyFragment.getInstance(position);
-            Fragment fragment = null;
+            Fragment fragment=null;
             if(position==0)
                 fragment=new FragmentA();
             else fragment=new FragmentA();
             return fragment;
         }
 
-        //@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
         public CharSequence getPageTitle(int position) {
-            Drawable drawable = getResources().getDrawable(icons[position]/*,null*/);
+            Drawable drawable = getResources().getDrawable(icons[position],null);
             //drawable.setBounds(0,0,40,40);
             ImageSpan imagespan = new ImageSpan(drawable);
             SpannableString spannablestring = new SpannableString(" ");

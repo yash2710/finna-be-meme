@@ -3,4 +3,6 @@
     <color name="primary">#FFFF11</color>
     <color name="primaryDark">#D50000</color>
     <color name="accent">#0099AA</color>
+    <color name="common_signin_btn_dark_text_disabled">#000000</color>
+    <color name="colorHighlight">#B6B6B6</color>
 </resources>
