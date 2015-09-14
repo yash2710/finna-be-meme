@@ -16,12 +16,21 @@ import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.parse.FindCallback;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -39,41 +48,15 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        NavigationDrawerFragment drawerfragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
-//        drawerfragment.setup(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
-
-//        recyclerview = (RecyclerView)findViewById(R.id.mainRview);
-//        recyclerview.setLayoutManager(new GridLayoutManager(this,2));
-//        adapter = new Adapter(this, getData());
-//        recyclerview.setAdapter(adapter);
-        //adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         mTabs = (SlidingTabLayout) findViewById(R.id.tabs);
         mTabs.setCustomTabView(R.layout.custom_tab_layout, R.id.tabText);
         this.setTitle("Appoint Me!");
-//        mTabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
-//            @Override
-//            public int getIndicatorColor(int position) {
-//                return getResources().getColor(R.color.background_material_light);
-//            }
-//        });
         mTabs.setDistributeEvenly(true);
         mTabs.setViewPager(mPager);
     }
-////
-//    public static List<Information> getData() {
-//        List<Information> data = new ArrayList<>();
-//        int[] icons = {R.mipmap.den, R.mipmap.gyn, R.mipmap.der, R.mipmap.auy, R.mipmap.auy1, R.mipmap.car, R.mipmap.ges, R.mipmap.neu};
-//        String[] titles = {"        DENTIST", "GYNECOLOGIST", "DERMITOLOGIST", "HOMEOPETHIC", "    AYURVEDIC", "CARDIOLOGIST", "GESTROENTERLOGIST", "  NEUROLOGIST"};
-//        for (int i = 0; i < titles.length && i < icons.length; i++) {
-//            Information current = new Information();
-//            current.Iconid = icons[i];
-//            current.title = titles[i];
-//            data.add(current);
-//        }
-//        return data;
-//    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

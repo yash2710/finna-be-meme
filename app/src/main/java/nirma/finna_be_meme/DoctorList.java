@@ -3,16 +3,23 @@ package nirma.finna_be_meme;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 
 public class DoctorList extends AppCompatActivity {
 
     private RecyclerView recyclerview;
-    private Adapter adapter;
+    private AdapterDoctorlist adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +30,11 @@ public class DoctorList extends AppCompatActivity {
         this.setTitle("List of Doctors");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        recyclerview = (RecyclerView)findViewById(R.id.doctorlist_user);
+        recyclerview.setLayoutManager(new LinearLayoutManager(this));
+        //adapter = new AdapterDoctorlist(this,getData());
+        adapter = new AdapterDoctorlist(this);
+        recyclerview.setAdapter(adapter);
 //        recyclerview = (RecyclerView)findViewById(R.id.list);
 //        recyclerview.setLayoutManager(new GridLayoutManager(this,2));
 //        adapter = new Adapter(this, getData());
@@ -67,7 +79,8 @@ public class DoctorList extends AppCompatActivity {
 //            data.add(current);
 //        }
 //        return data;
-//    }
+//    }ParseQuery<ParseObject> query = ParseQuery.getQuery("GameScore");
+
 
 }
 
