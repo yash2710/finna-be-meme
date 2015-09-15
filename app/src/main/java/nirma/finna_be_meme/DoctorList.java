@@ -30,11 +30,11 @@ public class DoctorList extends AppCompatActivity {
         this.setTitle("List of Doctors");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        recyclerview = (RecyclerView)findViewById(R.id.doctorlist_user);
-        recyclerview.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerview = (RecyclerView)findViewById(R.id.doctorlist_user);
+//        recyclerview.setLayoutManager(new LinearLayoutManager(this));
         //adapter = new AdapterDoctorlist(this,getData());
-        adapter = new AdapterDoctorlist(this);
-        recyclerview.setAdapter(adapter);
+//        adapter = new AdapterDoctorlist(this);
+//        recyclerview.setAdapter(adapter);
 //        recyclerview = (RecyclerView)findViewById(R.id.list);
 //        recyclerview.setLayoutManager(new GridLayoutManager(this,2));
 //        adapter = new Adapter(this, getData());

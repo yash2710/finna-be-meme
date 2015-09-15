@@ -1,4 +1,3 @@
-
 package nirma.finna_be_meme;
 
 import android.content.Context;
@@ -24,25 +23,69 @@ import java.util.List;
 /**
  * Created by rajiv on 04-09-2015.
  */
-class Appoint {
-    int Doctorid;
-    String Doctor_name;
-    String Speciality;
-    String Degrees;
-    int Fees;
-    int Experience;
-    public Appoint(){}
-    public Appoint(int Doctorid,String Doctor_name,String Speciality,String Degrees,int Fees,int Experience){
-        this.Doctorid=Doctorid;
-        this.Doctor_name=Doctor_name;
-        this.Speciality=Speciality;
-        this.Degrees=Degrees;
-        this.Fees=Fees;
-        this.Experience=Experience;
-    }
-}
 public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.MyViewHolder> {
+    //private final ArrayList<Object> appoint;
+    private LayoutInflater inflater;
+    private Context context;
+    List<InformationDoctorlist> data = Collections.emptyList();
 
+    //    class Appoint {
+//        int Doctorid;
+//        String Doctor_name;
+//        Stringxmlns:android="http://schemas.android.com/apk/res/android" Speciality;
+//        String Degrees;
+//        String city;
+//        int Fees;
+//        int Experience;
+//        Drawable photo;
+//        public Appoint(){}
+//        public Appoint(int Doctorid,String Doctor_name,String Speciality,String Degrees,String city,int Fees,int Experience,Drawable photo){
+//            this.Doctorid=Doctorid;
+//            this.Doctor_name=Doctor_name;
+//            this.Speciality=Speciality;
+//            this.Degrees=Degrees;
+//            this.city=city;
+//            this.Fees=Fees;
+//            this.Experience=Experience;
+//            this.photo=photo;
+//        }
+//    }
+    public AdapterDoctorlist(Context context){//, List<InformationDoctorlist> data) {
+        this.context=context;
+        inflater = LayoutInflater.from(context);
+        //----------this.data = data;-----
+
+    }
+
+    @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        //View view = inflater.inflate(R.layout.appointment_user, parent, false);
+        View view = inflater.inflate(R.layout.doctorlistlayout, parent, false);
+        MyViewHolder holder = new MyViewHolder(view);
+        return holder;
+    }
+
+    public void setList(List<InformationDoctorlist> data){
+        this.data=data;
+        Log.d("doctor1","here");
+        notifyItemRangeChanged(0,data.size());
+    }
+
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+        InformationDoctorlist current = data.get(position);
+        holder.Doctor_name.setText(current.Doctor_name);
+        holder.Fees.setText(current.Fees);
+        holder.Degrees.setText(current.Degrees);
+        holder.Experience.setText(current.Experience);
+        holder.Speciality.setText(current.Speciality);
+    }
+
+    @Override
+    public int getItemCount() {
+        Log.d("doctor"," "+data.size());
+        return data.size();
+    }
 
     class MyViewHolder extends RecyclerView.ViewHolder  {//implements View.OnClickListener
         TextView Doctor_name;
@@ -59,73 +102,23 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
             Degrees=(TextView) itemView.findViewById(R.id.Degrees);
             Fees=(TextView) itemView.findViewById(R.id.Fees);
             Experience=(TextView) itemView.findViewById(R.id.Experience);
+            //photo=(ImageView) itemView.findViewById(R.id.photo);
+//            Doctor_name.setOnClickListener(this);
+//            Speciality.setOnClickListener(this);
+//            Degrees.setOnClickListener(this);
+//            Fees.setOnClickListener(this);
+//            Experience.setOnClickListener(this);
+//            photo.setOnClickListener(this);
 
         }
-    }
-    //private final ArrayList<Object> appoint;
-    private List<Appoint> appoint = Collections.emptyList();
-    private LayoutInflater inflater;
-    private Context context;
-    public AdapterDoctorlist(Context context) {
-        this.context=context;
-        inflater = LayoutInflater.from(context);
-        appoint=new ArrayList<>();
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, com.parse.ParseException e) {
-                Log.d("doctor1","size"+list.size());
 
-                if (e == null) {
-                    for(int i=0;i<list.size();i++){
-                        int Doctorid = (int)list.get(i).get("Doctorid");
-                        String Doctor_name = (String)list.get(i).get("Doctor_name");
-                        String Speciality = (String)list.get(i).get("Speciality");
-                        String Degrees = (String)list.get(i).get("Degrees");
-                        String city = (String)list.get(i).get("city");
-                        int Fees = (int)list.get(i).get("Fees");
-                        int Experience = (int)list.get(i).get("Experience");
-                        //ImageView photo = (ImageView)list.get(i).get("Photo");
-                        //Drawable photo = (Drawable)list.get(i).get("Photo");
-                        Appoint a = new Appoint(Doctorid,Doctor_name,Speciality,Degrees,Experience,Fees);
-                        Log.d("doctor1","a"+a);
-                        appoint.add(a);
-                    }
-                } else {
-                    Log.d("doctor", "Error: " + e.getMessage());
-                }
-            }
-        });
-    }
-
-    @Override
-        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //View view = inflater.inflate(R.layout.appointment_user, parent, false);
-        View view = inflater.inflate(R.layout.doctorlistlayout, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
-        return holder;
-    }
-
-
-    @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        //int Doctorid = (appoint.get(position).Doctorid;
-        String Doctor_name =(appoint.get(position)).Doctor_name;
-        String Speciality = (appoint.get(position)).Speciality;
-        String Degrees = (appoint.get(position)).Degrees;
-        int Fees = (appoint.get(position)).Fees;
-        int Experience =(appoint.get(position)).Experience;
-
-        holder.Doctor_name.setText(Doctor_name);
-        holder.Fees.setText(Fees);
-        holder.Degrees.setText(Degrees);
-        holder.Experience.setText(Experience);
-        holder.Speciality.setText(Speciality);
-    }
-
-    @Override
-    public int getItemCount() {
-        Log.d("doctor1","size is"+appoint.size());
-        return appoint.size();
+//        @Override
+//        public void onClick(View v) {
+//            Log.d("katha", "hello111");
+//            Intent i = new Intent(context,DoctorDetails.class);
+//            i.putExtra("hhi", "hi");
+//            context.startActivity(i);
+//        }
     }
 }
+
