@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
+import com.parse.ParseFile;
+import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -75,10 +77,12 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
     public void onBindViewHolder(MyViewHolder holder, int position) {
         InformationDoctorlist current = data.get(position);
         holder.Doctor_name.setText(current.Doctor_name);
-        holder.Fees.setText(current.Fees);
+        holder.Fees.setText("Fees:" + current.Fees);
         holder.Degrees.setText(current.Degrees);
-        holder.Experience.setText(current.Experience);
-        holder.Speciality.setText(current.Speciality);
+        holder.Experience.setText(current.Experience + " yrs exp.");
+//        holder.Speciality.setText(current.Speciality);
+        holder.Likes.setText(current.Likes);
+
     }
 
     @Override
@@ -93,15 +97,21 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
         TextView Degrees;
         TextView Fees;
         TextView Experience;
-
+        TextView Likes;
         public MyViewHolder(View itemView) {
             super(itemView);
 
+            // Get the ImageView from
+            // main.xml
+            // Set the Bitmap into the
+            // ImageView
             Doctor_name=(TextView)itemView.findViewById(R.id.Doctor_name);
-            Speciality=(TextView) itemView.findViewById(R.id.Speciality);
+//            Speciality=(TextView) itemView.findViewById(R.id.Speciality);
             Degrees=(TextView) itemView.findViewById(R.id.Degrees);
             Fees=(TextView) itemView.findViewById(R.id.Fees);
-            Experience=(TextView) itemView.findViewById(R.id.Experience);
+            Experience = (TextView) itemView.findViewById(R.id.Experience);
+            Likes = (TextView) itemView.findViewById(R.id.likes);
+//            Photo = (ImageView)itemView.findViewById(R.id.Photo);
             //photo=(ImageView) itemView.findViewById(R.id.photo);
 //            Doctor_name.setOnClickListener(this);
 //            Speciality.setOnClickListener(this);

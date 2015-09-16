@@ -61,8 +61,8 @@ public class SubActivity extends AppCompatActivity {
                         String Speciality = (String) list.get(i).get("Speciality");
                         String Degrees = (String) list.get(i).get("Degrees");
                         //String city = (String) list.get(i).get("city");
-                        int Fees = (int) list.get(i).get("Fees");
-                        int Experience = (int) list.get(i).get("Experience");
+                        String Fees = (String) list.get(i).get("Fees");
+                        String Experience = (String) list.get(i).get("Experience");
                         //Image photo = (Image)list.get(i).get("Photo");
                         //Drawable photo = (Drawable) list.get(i).get("Photo");
                         current.Doctorid = Doctorid;

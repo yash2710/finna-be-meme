@@ -2,8 +2,13 @@ package nirma.finna_be_meme;
 
 import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.net.Uri;
 import android.widget.ImageView;
 
+import com.parse.ParseFile;
+import com.parse.ParseImageView;
+
+import java.net.URI;
 import java.security.Timestamp;
 import java.sql.Array;
 
@@ -19,8 +24,8 @@ public class InformationDoctorlist {
     String Doctor_name;
     String Speciality;
     String Degrees;
-    int Fees;
-    int Experience;
-    //Image photo;
+    String Fees;
+    String Experience;
+    String Likes;
     //Drawable photo;
 }
