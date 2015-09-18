@@ -1,5 +1,6 @@
 package nirma.finna_be_meme;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.parse.FindCallback;
@@ -28,7 +30,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class DoctorList extends AppCompatActivity {
+public class DoctorList extends AppCompatActivity implements ClickListener{
 
     private RecyclerView recyclerview;
     private AdapterDoctorlist adapter;
@@ -50,6 +52,7 @@ public class DoctorList extends AppCompatActivity {
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AdapterDoctorlist(this);//, getData());
         recyclerview.setAdapter(adapter);
+        recyclerview.addOnItemTouchListener(new RecyclerTouchListener(this,recyclerview,this));
         data = new ArrayList<>();
         if (savedInstanceState == null) {
             i = getIntent().getExtras();
@@ -128,6 +131,19 @@ public class DoctorList extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onClick(View view, int position) {
+        Intent i = new Intent(DoctorList.this,DoctorDetails.class);
+        i.putExtra("name",data.get(position).Doctor_name);
+        i.putExtra("qual",data.get(position).Degrees);
+        //put all other extras that can be passed to the activity
+        startActivity(i);
+    }
+
+    @Override
+    public void onLongClick(View view, int position) {
+
+    }
 }
 
 

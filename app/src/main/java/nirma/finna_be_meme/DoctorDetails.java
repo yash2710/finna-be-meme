@@ -20,7 +20,7 @@ public class DoctorDetails extends AppCompatActivity {
 
     Bundle i;
     GoogleMap mMap;
-    TextView name,qualification,time,days;
+    TextView name,qualification,time,days,speciality;
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
