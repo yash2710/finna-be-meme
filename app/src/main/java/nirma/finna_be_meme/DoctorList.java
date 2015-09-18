@@ -72,7 +72,8 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
 
                     for (int i = 0; i < list.size(); i++) {
                         String Speciality = (String) list.get(i).get("Speciality");
-                        //if (speciality.equals(Speciality.toUpperCase())) {
+                        Log.d("doctor1", speciality + "," + Speciality + ",");
+                        if (speciality.equalsIgnoreCase(Speciality)) {
                             String Doctor_name = (String) list.get(i).get("Doctor_name");
                             String Degrees = (String) list.get(i).get("Degrees");
                             String Fees = (String) list.get(i).get("Fees");
@@ -84,12 +85,11 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
                             current.Degrees = Degrees;
                             current.Fees = Fees;
                             current.Experience = Experience;
-                            current.Likes = Likes;
-                            //current.uri=uri;
+                            current.Likes = Likes;//current.uri=uri;
                             data.add(current);
                             Log.d("doctor1", "hello this is katha123" + data.size());
                             // }
-                        //}
+                        }
                     }
                 } else {
                     Log.d("doctor", "Error: " + e.getMessage());
