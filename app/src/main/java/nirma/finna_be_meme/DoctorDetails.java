@@ -1,8 +1,11 @@
 package nirma.finna_be_meme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -16,7 +19,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * Created by Yash on 12-Aug-15.
  */
-public class DoctorDetails extends AppCompatActivity {
+public class DoctorDetails extends AppCompatActivity implements View.OnClickListener {
 
     Bundle i;
     GoogleMap mMap;
@@ -25,20 +28,25 @@ public class DoctorDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor_details);
+        //setContentView(R.layout.activity_doctor_details);
+        setContentView(R.layout.doctor);
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         i = getIntent().getExtras();
         setUpMapIfNeeded();
-        name = (TextView) findViewById(R.id.name);
+        //name = (TextView) findViewById(R.id.drname);
         qualification = (TextView) findViewById(R.id.qual);
         time = (TextView) findViewById(R.id.time);
         days = (TextView) findViewById(R.id.cal);
-        name.setText(i.getString("name","Dr. Sanjiv Haribhakti"));
+        speciality = (TextView) findViewById(R.id.speciality);
+        //name.setText(i.getString("name","Dr. Sanjiv Haribhakti"));
         qualification.setText(i.getString("qual","-"));
         time.setText(i.getString("open_hours","-"));
         days.setText(i.getString("open_days","-"));
-
+        speciality.setText(i.getString("Speciality", "Gynecologist"));
+        Button book=(Button)findViewById(R.id.book);
+        book.setOnClickListener(this);
+        this.setTitle(i.getString("name","Dr. Sanjiv Haribhakti"));
     }
 
     @Override
@@ -72,5 +80,13 @@ public class DoctorDetails extends AppCompatActivity {
                 .target(new LatLng(lat,lon))
                 .build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+    }
+
+    @Override
+    public void onClick(View v) {
+     if(v==findViewById(R.id.book)){
+         Intent i=new Intent(this,Login.class);
+         startActivity(i);
+     }
     }
 }

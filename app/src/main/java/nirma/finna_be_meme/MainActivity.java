@@ -112,17 +112,21 @@ public class MainActivity extends AppCompatActivity {
 
         @TargetApi(Build.VERSION_CODES.LOLLIPOP)
         public CharSequence getPageTitle(int position) {
-            Drawable drawable = getResources().getDrawable(icons[position],null);
-            //drawable.setBounds(0,0,40,40);
-            ImageSpan imagespan = new ImageSpan(drawable);
-            SpannableString spannablestring = new SpannableString(" ");
-            spannablestring.setSpan(imagespan, 0, spannablestring.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            return spannablestring;
+            if(position==0){
+                return "Home";
+            }
+            else return "Appointment";
+//            Drawable drawable = getResources().getDrawable(icons[position],null);
+//            //drawable.setBounds(0,0,40,40);
+//            ImageSpan imagespan = new ImageSpan(drawable);
+//            SpannableString spannablestring = new SpannableString(" ");
+//            spannablestring.setSpan(imagespan, 0, spannablestring.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            return spannablestring;
         }
 
         @Override
         public int getCount() {
-            return 1;
+            return 2;
         }
     }
 

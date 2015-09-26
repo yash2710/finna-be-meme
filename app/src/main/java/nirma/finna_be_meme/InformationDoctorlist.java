@@ -27,5 +27,7 @@ public class InformationDoctorlist {
     String Fees;
     String Experience;
     String Likes;
+    String Days;
+    String Time;
     //Drawable photo;
 }

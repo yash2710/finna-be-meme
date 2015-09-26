@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="nirma.finna_be_meme">
+    package="nirma.finna_be_meme" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,29 +17,30 @@
         android:allowBackup="true"
         android:icon="@mipmap/icon_main"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
+
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".SubActivity"
-            android:label="@string/title_activity_sub">
+            android:label="@string/title_activity_sub" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".Filterdata"
-            android:label="@string/title_activity_filterdata"/>
+            android:label="@string/title_activity_filterdata" />
         <activity
             android:name=".DoctorList"
-            android:label="@string/title_activity_doctor_list">
+            android:label="@string/title_activity_doctor_list" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -47,13 +48,18 @@
         <activity
             android:name=".pre_mainactivity"
             android:icon="@mipmap/icon_main"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DoctorDetails"/>
+        <activity android:name=".DoctorDetails" />
+        <activity
+            android:name=".Login"
+            android:label="@string/title_activity_login" >
+        </activity>
     </application>
 
 </manifest>

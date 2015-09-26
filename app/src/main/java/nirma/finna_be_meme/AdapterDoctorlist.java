@@ -92,7 +92,7 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
         return data.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {//
+    class MyViewHolder extends RecyclerView.ViewHolder {//implements View.OnClickListener
         TextView Doctor_name;
         TextView Speciality;
         TextView Degrees;
@@ -114,22 +114,22 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
             Likes = (TextView) itemView.findViewById(R.id.likes);
 //            Photo = (ImageView)itemView.findViewById(R.id.Photo);
             //photo=(ImageView) itemView.findViewById(R.id.photo);
-            Doctor_name.setOnClickListener(this);
-            Speciality.setOnClickListener(this);
-            Degrees.setOnClickListener(this);
-            Fees.setOnClickListener(this);
-            Experience.setOnClickListener(this);
+//            Doctor_name.setOnClickListener(this);
+//            Speciality.setOnClickListener(this);
+//            Degrees.setOnClickListener(this);
+//            Fees.setOnClickListener(this);
+//            Experience.setOnClickListener(this);
 
         }
 
-        @Override
-        public void onClick(View v) {
-            Log.d("katha", "hello111");
-            Intent i = new Intent(context,DoctorDetails.class);
-            i.putExtra("hhi", "hi");
-            //i.putExtra("Doctorid",(String)title.getText());
-            context.startActivity(i);
-        }
+//        @Override
+//        public void onClick(View v) {
+//            Log.d("katha", "hello111");
+//            Intent i = new Intent(context,DoctorDetails.class);
+//            i.putExtra("hhi", "hi");
+//            //i.putExtra("Doctorid",(String)title.getText());
+//            context.startActivity(i);
+//        }
     }
 }
 
