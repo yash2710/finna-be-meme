@@ -1,5 +1,7 @@
 package nirma.finna_be_meme;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,20 +11,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.SaveCallback;
+
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
     Button request;
-    EditText pname,dob,appointmentdate;
+    EditText pname;
+    Button dob,appointmentdate;
     EditText problem;
     RadioGroup gender;
+    int year_dob,month_dob,day_dob, year_app, month_app, day_app;
+    Calendar appd, date;
+    static int DOB_ID = 0;
+    static int APP_ID = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +46,136 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         request=(Button)findViewById(R.id.request);
         request.setOnClickListener(this);
         pname=(EditText)findViewById(R.id.patient_name);
-        dob=(EditText)findViewById(R.id.dob);
+        dob=(Button)findViewById(R.id.dob);
         problem=(EditText)findViewById(R.id.problem);
         gender=(RadioGroup)findViewById(R.id.gendergroup);
-        appointmentdate=(EditText)findViewById(R.id.appointmentdate);
+        appointmentdate=(Button)findViewById(R.id.appointmentdate);
+
+        Calendar cal = Calendar.getInstance();
+        appd = new Calendar() {
+            @Override
+            public void add(int i, int i1) {
+
+            }
+
+            @Override
+            protected void computeFields() {
+
+            }
+
+            @Override
+            protected void computeTime() {
+
+            }
+
+            @Override
+            public int getGreatestMinimum(int i) {
+                return 0;
+            }
+
+            @Override
+            public int getLeastMaximum(int i) {
+                return 0;
+            }
+
+            @Override
+            public int getMaximum(int i) {
+                return 0;
+            }
+
+            @Override
+            public int getMinimum(int i) {
+                return 0;
+            }
+
+            @Override
+            public void roll(int i, boolean b) {
+
+            }
+        };
+
+        date = new Calendar() {
+            @Override
+            public void add(int i, int i1) {
+
+            }
+
+            @Override
+            protected void computeFields() {
+
+            }
+
+            @Override
+            protected void computeTime() {
+
+            }
+
+            @Override
+            public int getGreatestMinimum(int i) {
+                return 0;
+            }
+
+            @Override
+            public int getLeastMaximum(int i) {
+                return 0;
+            }
+
+            @Override
+            public int getMaximum(int i) {
+                return 0;
+            }
+
+            @Override
+            public int getMinimum(int i) {
+                return 0;
+            }
+
+            @Override
+            public void roll(int i, boolean b) {
+
+            }
+        };
+
+        appd.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH)+1,cal.get(Calendar.DATE));
+
+        date.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH)+1,cal.get(Calendar.DATE));
+
+
+
+        dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog(DOB_ID);
+            }
+        });
+
+        appointmentdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog(APP_ID);
+            }
+        });
+
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if(id==DOB_ID)
+            return new DatePickerDialog(this,new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                    date.set(i, i1 + 1, i2);
+                }
+            },date.get(Calendar.YEAR),date.get(Calendar.MONTH)-1,date.get(Calendar.DATE));
+        if(id==APP_ID)
+            return new DatePickerDialog(this,new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                    appd.set(i,i1+1,i2);
+
+                }
+            },appd.get(Calendar.YEAR),appd.get(Calendar.MONTH)-1,appd.get(Calendar.DATE));
+        return super.onCreateDialog(id);
     }
 
     @Override
@@ -64,24 +203,31 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if(v==findViewById(R.id.request)){
-            if(pname.getText().toString().equals("") || dob.getText().toString().equals("") || appointmentdate.getText().toString().equals("")){
+            if(pname.getText().toString().equals("")){
                 Toast.makeText(Login.this, "some fields are empty :)",
                         Toast.LENGTH_LONG).show();
             }
             else {
                 Log.d("doctor1", "P_name" + pname.getText().toString());
                 ParseObject patient = new ParseObject("Patient");
-                patient.put("P_id","9408756916");
+                patient.put("P_id","9408756917");
                 patient.put("Doctorid","1");
                 patient.put("appointmentid","1");
-                patient.put("doctor_confirm","false");
-                patient.put("patient_confirm","false");
+                patient.put("doctor_confirm",false);
+                patient.put("patient_confirm",true);
                 patient.put("P_name",pname.getText().toString());
-                patient.put("DOB",dob.getText().toString());
+                patient.put("DOB",new Date(date.get(Calendar.YEAR),date.get(Calendar.MONTH),date.get(Calendar.DATE)));
                 patient.put("prob_desc", problem.getText().toString());
                 patient.put("Gender", ((RadioButton)gender.getChildAt(gender.indexOfChild(gender.findViewById(gender.getCheckedRadioButtonId())))).getText().toString());
-                patient.saveInBackground();
+                patient.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if(e!=null)
+                            e.printStackTrace();
+                    }
+                });
             }
         }
     }
+
 }
