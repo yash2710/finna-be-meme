@@ -1,165 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-        <LinearLayout
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:orientation="horizontal">
 
-            <include
-                android:id="@+id/app_bar"
-                layout="@layout/app_bar" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/img_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:padding="15dp"
+                android:src="@drawable/ic_person_black_24dp"
+                android:tint="@color/common_signin_btn_dark_text_disabled"
+                android:tintMode="src_in" />
 
-                <ImageView
-                    android:id="@+id/img_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:src="@drawable/ic_person_black_24dp"
-                    android:tint="@color/common_signin_btn_dark_text_disabled"
-                    android:tintMode="src_in" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/img_name"
+                android:layout_toRightOf="@+id/img_name"
+                android:text="Name Surname"
+                android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img_name"
-                    android:layout_toRightOf="@+id/img_name"
-                    android:text="Name Surname"
-                    android:textSize="20sp" />
-
-            </RelativeLayout>
+        </RelativeLayout>
 
 
-            <include layout="@layout/seperator" />
+        <include layout="@layout/seperator" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/img_qual"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:padding="15dp"
-                    android:src="@drawable/ic_school_black_24dp"
-                    android:tint="@color/common_signin_btn_dark_text_disabled"
-                    android:tintMode="src_in" />
-
-                <TextView
-                    android:id="@+id/qual"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img_qual"
-                    android:layout_toRightOf="@+id/img_qual"
-                    android:text="Qualifications"
-                    android:textSize="17sp" />
-            </RelativeLayout>
-
-            <include layout="@layout/seperator" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/img_spl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:padding="15dp"
-                    android:src="@drawable/ic_event_black_24dp"
-                    android:tint="@color/common_signin_btn_dark_text_disabled"
-                    android:tintMode="src_in" />
-
-                <TextView
-                    android:id="@+id/speciality"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img_spl"
-                    android:layout_toRightOf="@+id/img_spl"
-                    android:text="Specialities"
-                    android:textSize="17sp" />
-            </RelativeLayout>
-
-            <include layout="@layout/seperator" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/img_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:padding="15dp"
-                    android:src="@drawable/ic_schedule_black_24dp"
-                    android:tint="@color/common_signin_btn_dark_text_disabled"
-                    android:tintMode="src_in" />
-
-                <TextView
-                    android:id="@+id/time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img_time"
-                    android:layout_toRightOf="@+id/img_time"
-                    android:text="Time"
-                    android:textSize="17sp" />
-            </RelativeLayout>
-
-            <include layout="@layout/seperator" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/img_cal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:padding="15dp"
-                    android:src="@drawable/ic_event_black_24dp"
-                    android:tint="@color/common_signin_btn_dark_text_disabled"
-                    android:tintMode="src_in" />
-
-                <TextView
-                    android:id="@+id/cal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img_cal"
-                    android:layout_toRightOf="@+id/img_cal"
-                    android:text="Days"
-                    android:textSize="17sp" />
-            </RelativeLayout>
-
-            <include layout="@layout/seperator" />
-
-
-        </LinearLayout>
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_qual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="15dp"
+                android:src="@drawable/ic_school_black_24dp"
+                android:tint="@color/common_signin_btn_dark_text_disabled"
+                android:tintMode="src_in" />
+
+            <TextView
+                android:id="@+id/qual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/img_qual"
+                android:layout_toRightOf="@+id/img_qual"
+                android:text="Qualifications"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <include layout="@layout/seperator" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_spl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="15dp"
+                android:src="@drawable/ic_event_black_24dp"
+                android:tint="@color/common_signin_btn_dark_text_disabled"
+                android:tintMode="src_in" />
+
+            <TextView
+                android:id="@+id/speciality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/img_spl"
+                android:layout_toRightOf="@+id/img_spl"
+                android:text="Specialities"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <include layout="@layout/seperator" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="15dp"
+                android:src="@drawable/ic_schedule_black_24dp"
+                android:tint="@color/common_signin_btn_dark_text_disabled"
+                android:tintMode="src_in" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/img_time"
+                android:layout_toRightOf="@+id/img_time"
+                android:text="Time"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <include layout="@layout/seperator" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_cal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="15dp"
+                android:src="@drawable/ic_event_black_24dp"
+                android:tint="@color/common_signin_btn_dark_text_disabled"
+                android:tintMode="src_in" />
+
+            <TextView
+                android:id="@+id/cal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/img_cal"
+                android:layout_toRightOf="@+id/img_cal"
+                android:text="Days"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <include layout="@layout/seperator" />
+
+
+
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#ff0097a7"
+        android:text="Book Appointment" />
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>
