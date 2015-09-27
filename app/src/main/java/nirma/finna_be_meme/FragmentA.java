@@ -29,7 +29,7 @@ private Adapter adapter;
     public static List<Information> getData() {
         List<Information> data = new ArrayList<>();
         int[] icons = {R.mipmap.den, R.mipmap.gyn, R.mipmap.der, R.mipmap.auy, R.mipmap.auy1, R.mipmap.car, R.mipmap.ges, R.mipmap.neu};
-        String[] titles = {"      DENTIST", "GYNECOLOGIST", "DERMITOLOGIST", "HOMEOPETHIC", "  AYURVEDIC", "CARDIOLOGIST", "GESTROENTERLOGIST", "  NEUROLOGIST"};
+        String[] titles = {"      DENTIST", "GYNECOLOGIST", "DERMATOLOGIST", "HOMEOPETHIC", "  AYURVEDIC", "CARDIOLOGIST", "GESTROENTERLOGIST", "  NEUROLOGIST"};
         for (int i = 0; i < titles.length && i < icons.length; i++) {
             Information current = new Information();
             current.Iconid = icons[i];
