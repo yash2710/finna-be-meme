@@ -30,17 +30,17 @@ public class DoctorDetails extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_doctor_details);
-        setContentView(R.layout.doctor);
+        setContentView(R.layout.activity_doctor_details);
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         i = getIntent().getExtras();
         setUpMapIfNeeded();
-        //name = (TextView) findViewById(R.id.drname);
+        name = (TextView) findViewById(R.id.name);
         qualification = (TextView) findViewById(R.id.qual);
         time = (TextView) findViewById(R.id.time);
         days = (TextView) findViewById(R.id.cal);
         speciality = (TextView) findViewById(R.id.speciality);
-        //name.setText(i.getString("name","Dr. Sanjiv Haribhakti"));
+        name.setText(i.getString("name","Dr. Sanjiv Haribhakti"));
         qualification.setText(i.getString("qual","-"));
         time.setText(i.getString("open_hours","-"));
         days.setText(i.getString("open_days","-"));
