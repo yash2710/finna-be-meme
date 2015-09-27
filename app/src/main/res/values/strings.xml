@@ -28,4 +28,5 @@
     <string name="title_activity_vector_test">VectorTestActivity</string>
     <string name="title_activity_pre_mainactivity">pre_mainactivity</string>
     <string name="title_activity_login">Login</string>
+    <string name="title_activity_settings">Settings</string>
 </resources>
