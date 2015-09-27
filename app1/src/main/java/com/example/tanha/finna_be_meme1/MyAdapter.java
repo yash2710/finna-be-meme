@@ -44,7 +44,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public void setList(List<Appoint> appoint){
         this.appoint=appoint;
-        notifyItemRangeChanged(0, appoint.size());
+      notifyDataSetChanged();
     }
 
     @Override

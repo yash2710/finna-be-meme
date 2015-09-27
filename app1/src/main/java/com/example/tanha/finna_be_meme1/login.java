@@ -49,13 +49,14 @@ public class login extends AppCompatActivity {
         llogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email=lemail.getText().toString();
+                final String email=lemail.getText().toString();
                 String password=lpassword.getText().toString();
                 ParseUser.logInInBackground(email, password, new LogInCallback() {
                     public void done(ParseUser user, ParseException e) {
                         if (user != null) {
                             // Hooray! The user is logged in.
                             Intent i = new Intent(login.this, home.class);
+                            i.putExtra("email",email);
                             startActivity(i);
                         } else {
                             // Signup failed. Look at the ParseException to see what happened.

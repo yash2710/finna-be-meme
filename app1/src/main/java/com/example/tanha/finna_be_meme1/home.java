@@ -38,8 +38,9 @@ public class home extends AppCompatActivity{
         mAdapter = new MyAdapter(this);
         view.setAdapter(mAdapter);
         appoint1=new ArrayList<>();
+        String username=getIntent().getExtras().getString("email");
         ParseQuery<ParseObject> query = ParseQuery.getQuery("appointment");
-        query.whereEqualTo("dr_username", "dr_def@appointme.com");
+        query.whereEqualTo("dr_username",username);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, com.parse.ParseException e) {
@@ -58,6 +59,7 @@ public class home extends AppCompatActivity{
                 } else {
                     Log.d("dr_username", "Error: " + e.getMessage());
                 }
+                mAdapter.notifyDataSetChanged();
                 mAdapter.setList(appoint1);
 
 
