@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class home extends AppCompatActivity{
+public class    home extends AppCompatActivity{
     private RecyclerView view;
     //private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;

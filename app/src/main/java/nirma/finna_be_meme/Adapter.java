@@ -14,6 +14,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.sql.Array;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,7 +31,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     List<Information> data = Collections.emptyList();
 
     public Adapter(Context context, List<Information> data) {
-        this.context=context;
+        this.context = context;
         inflater = LayoutInflater.from(context);
         this.data = data;
     }
@@ -64,8 +71,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
         @Override
         public void onClick(View v) {
+
             Log.d("katha", "hello111");
-            context.startActivity(new Intent(context,DoctorList.class));
+            //context.startActivity(new Intent(context,DoctorList.class));
+            Intent i = new Intent(context, DoctorList.class);
+            i.putExtra("Speciality",(String)title.getText());
+            Log.d("doctor1", (String)title.getText());
+            context.startActivity(i);
+
         }
     }
 }
