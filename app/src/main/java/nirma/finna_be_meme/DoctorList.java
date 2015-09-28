@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -73,11 +74,13 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
         GPSTracker gps = new GPSTracker(this);
         double latitude = gps.getLatitude();
         double longitude = gps.getLongitude();
+        Log.d("GPS",latitude+","+longitude);
         ParseGeoPoint point = new ParseGeoPoint(latitude,longitude);
         //////////////////////////////
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
-        query.whereWithinKilometers("location",point,10);////static value 10km
+        if(latitude!=0.0 && longitude!=0.0)
+            query.whereWithinKilometers("location",point,10);////static value 10km
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, com.parse.ParseException e) {
