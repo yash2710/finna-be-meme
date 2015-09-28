@@ -1,6 +1,7 @@
 package com.example.tanha.finna_be_meme1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,7 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private LayoutInflater inflator;
     private Context context;
-    List<Appoint> appoint= Collections.emptyList();
+    List<Appoint> appoint = Collections.emptyList();
 
 
     /*public void add(int position, String item) {
@@ -37,20 +38,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 
     public MyAdapter(Context context) {
-        this.context=context;
-        inflator=LayoutInflater.from(context);
+        this.context = context;
+        inflator = LayoutInflater.from(context);
 
     }
 
-    public void setList(List<Appoint> appoint){
-        this.appoint=appoint;
-      notifyDataSetChanged();
+    public void setList(List<Appoint> appoint) {
+        this.appoint = appoint;
+        notifyDataSetChanged();
     }
 
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.d("disp", "display");
-        View v = inflator.inflate(R.layout.recycler_view,parent, false);
+        View v = inflator.inflate(R.layout.recycler_view, parent, false);
         ViewHolder vh = new ViewHolder(v);
 
         return vh;
@@ -59,20 +60,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        final String Id =(appoint.get(position)).id;
+        final String Id = (appoint.get(position)).id;
         final String name = (appoint.get(position)).name;
-        holder.txtHeader.setText("ID: "+Id);
-        holder.txtFooter.setText("Patient's Name: "+name);
+        holder.txtHeader.setText(Id);
+        holder.txtFooter.setText(name);
 
     }
 
     @Override
     public int getItemCount() {
-        
+
         Log.d("hfhd", "a" + appoint.size());
 
         return appoint.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView txtHeader;
@@ -80,8 +82,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         public ViewHolder(View v) {
             super(v);
-            txtHeader = (TextView) v.findViewById(R.id.recycler_view1);
-            txtFooter = (TextView) v.findViewById(R.id.recycler_view2);
+            txtHeader = (TextView) v.findViewById(R.id.recycler_view2);
+            txtFooter = (TextView) v.findViewById(R.id.recycler_view1);
         }
+
+
     }
 }

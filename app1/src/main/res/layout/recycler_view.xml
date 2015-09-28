@@ -1,27 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
+
     android:weightSum="1">
 
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
+        android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/tick_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:src="@drawable/ic_action_name"
+        android:tint="#ff000000" />
+
+    <TextView
         android:id="@+id/recycler_view2"
-        android:layout_weight="0.03" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/tick_image"
+        android:layout_toRightOf="@id/tick_image"
+        android:text="P_ID"
+        android:textSize="20sp"
+        android:layout_weight="0.03"
+        android:textColor="#ff000000" />
 
-    <TextView
+    </RelativeLayout>
 
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/recycler_view1"
-        android:layout_weight="0.03"
-        />
+        android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/tick_image1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:src="@drawable/ic_action_name2"
+        android:tint="#ff000000" />
+
+
+        <TextView
+            android:id="@+id/recycler_view1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/tick_image1"
+            android:layout_toRightOf="@id/tick_image1"
+            android:text="Name"
+            android:textSize="20sp"
+            android:layout_weight="0.03"
+            android:textColor="#ff000000" />
+
+    </RelativeLayout>
 
     <include layout="@layout/seperator"/>
 

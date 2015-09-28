@@ -1,5 +1,6 @@
 package com.example.tanha.finna_be_meme1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.parse.FindCallback;
 import com.parse.ParseObject;
@@ -17,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class home extends AppCompatActivity{
+public class home extends AppCompatActivity implements Click{
     private RecyclerView view;
     //private RecyclerView.LayoutManager mLayoutManager;
     private MyAdapter mAdapter;
@@ -87,5 +89,24 @@ public class home extends AppCompatActivity{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+//    @Override
+//    public void onClick(View v, int position) {
+//        Intent i=new Intent(home.this,patient_details.class);
+//        i.putExtra("email",appoint1.get(position).id);
+//        startActivity(i);
+//
+//    }
+
+
+
+    @Override
+    public void onClick(View v, int position) {
+       Intent i=new Intent(home.this,patient_details.class);
+       i.putExtra("email",appoint1.get(position).id);
+       startActivity(i);
+
+
     }
 }

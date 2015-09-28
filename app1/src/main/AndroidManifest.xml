@@ -27,12 +27,14 @@
         <activity
             android:name=".home"
             android:label="@string/title_activity_home" >
-
         </activity>
         <activity
             android:name=".test"
             android:label="@string/title_activity_test" >
-
+        </activity>
+        <activity
+            android:name=".patient_details"
+            android:label="@string/title_activity_patient_details" >
         </activity>
     </application>
 
