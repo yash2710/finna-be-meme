@@ -1,8 +1,6 @@
 package com.example.tanha.finna_be_meme1;
 
 import android.content.Context;
-import android.content.Intent;
-import android.nfc.Tag;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,12 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.parse.FindCallback;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,7 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         final String Id = (appoint.get(position)).id;
-        final String name = (appoint.get(position)).name;
+        final String name = (appoint.get(position)).date;
         holder.txtHeader.setText(Id);
         holder.txtFooter.setText(name);
 

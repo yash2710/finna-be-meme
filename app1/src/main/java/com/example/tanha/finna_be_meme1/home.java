@@ -1,5 +1,6 @@
 package com.example.tanha.finna_be_meme1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -52,8 +53,11 @@ public class home extends AppCompatActivity implements ClickListener {
 
                         String id = (String) list.get(i).get("p_id");
                         String name = (String) list.get(i).get("p_name");
+                        String date=(String) list.get(i).get("date");
+                        String time=(String) list.get(i).get("time");
+                        String contact=(String) list.get(i).get("contact");
 
-                        Appoint a = new Appoint(id, name);
+                        Appoint a = new Appoint(id, name,date,time,contact);
                         appoint1.add(a);
                         Log.d("hi", a.id + a.name);
                         Log.d("Hello", appoint1.get(i).id + appoint1.get(i).name);
@@ -101,6 +105,13 @@ public class home extends AppCompatActivity implements ClickListener {
 
     @Override
     public void onClick(View v, int position) {
+        Intent i=new Intent(home.this,patient_details.class);
+        i.putExtra("email",appoint1.get(position).id);
+        i.putExtra("name",appoint1.get(position).name);
+        i.putExtra("date",appoint1.get(position).date);
+        i.putExtra("time",appoint1.get(position).time);
+        i.putExtra("contact",appoint1.get(position).contact);
+        startActivity(i);
 
     }
 
