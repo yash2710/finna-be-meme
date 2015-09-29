@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nirma.finna_be_meme.Settings">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar"
+        android:text="SHOW ME DOCTORS IN THE RANGE OF(km)" />
+
+    <!--<RadioGroup-->
+        <!--android:id="@+id/dis_selection"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/label">-->
+
+        <!--<RadioButton-->
+            <!--android:id="@+id/norange"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:checked="true"-->
+            <!--android:text="NO RANGE" />-->
+
+        <!--<RadioButton-->
+            <!--android:id="@+id/change_dis"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="CHANGE DISTANCE" />-->
+    <!--</RadioGroup>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/manual_dis"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/app_bar"-->
+        <!--android:text="DOCTORS NEAR BY : " />-->
+
+    <EditText
+        android:id="@+id/input_distance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar"
+        android:layout_toRightOf="@+id/label"
+        android:inputType="numberDecimal"
+        android:text="10"
+        />
+
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="DONE"-->
+        <!--android:id="@+id/done"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:background="#ff0097a7"-->
+        <!--android:textColor="#ffffffff" />-->
+
+</RelativeLayout>

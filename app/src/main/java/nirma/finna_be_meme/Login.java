@@ -32,10 +32,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     Button dob,appointmentdate;
     EditText problem;
     RadioGroup gender;
-    int year_dob,month_dob,day_dob, year_app, month_app, day_app;
     Calendar appd, date;
     static int DOB_ID = 0;
     static int APP_ID = 1;
+    Calendar cal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         gender=(RadioGroup)findViewById(R.id.gendergroup);
         appointmentdate=(Button)findViewById(R.id.appointmentdate);
 
-        Calendar cal = Calendar.getInstance();
+        cal = Calendar.getInstance();
         appd = new Calendar() {
             @Override
             public void add(int i, int i1) {
@@ -93,7 +93,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
             }
         };
-
         date = new Calendar() {
             @Override
             public void add(int i, int i1) {
@@ -136,11 +135,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             }
         };
 
-        appd.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH)+1,cal.get(Calendar.DATE));
-
-        date.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH)+1,cal.get(Calendar.DATE));
-
-
+        appd.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DATE));
+        date.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DATE));
 
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +144,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 showDialog(DOB_ID);
             }
         });
-
         appointmentdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -164,17 +159,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             return new DatePickerDialog(this,new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                    date.set(i, i1 + 1, i2);
+                    date.set(i, i1, i2);
+                    dob.setText(i2+"/"+(i1+1)+"/"+i);
                 }
-            },date.get(Calendar.YEAR),date.get(Calendar.MONTH)-1,date.get(Calendar.DATE));
+            },date.get(Calendar.YEAR),date.get(Calendar.MONTH),date.get(Calendar.DATE));
         if(id==APP_ID)
             return new DatePickerDialog(this,new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                    appd.set(i,i1+1,i2);
-
+                    appd.set(i,i1,i2);
+                    appointmentdate.setText(i2+"/"+(i1+1)+"/"+i);
                 }
-            },appd.get(Calendar.YEAR),appd.get(Calendar.MONTH)-1,appd.get(Calendar.DATE));
+            },appd.get(Calendar.YEAR),appd.get(Calendar.MONTH),appd.get(Calendar.DATE));
         return super.onCreateDialog(id);
     }
 
@@ -203,7 +199,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if(v==findViewById(R.id.request)){
-            if(pname.getText().toString().equals("")){
+            if(pname.getText().toString().equals("") || (date.get(Calendar.MONTH) == cal.get(Calendar.MONTH) && date.get(Calendar.YEAR) == cal.get(Calendar.YEAR) && date.get(Calendar.DATE) == cal.get(Calendar.DATE))){
                 Toast.makeText(Login.this, "some fields are empty :)",
                         Toast.LENGTH_LONG).show();
             }

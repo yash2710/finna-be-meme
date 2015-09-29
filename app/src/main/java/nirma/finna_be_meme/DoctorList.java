@@ -14,12 +14,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseFile;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -36,6 +41,7 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
     private AdapterDoctorlist adapter;
     private List<InformationDoctorlist> data = Collections.emptyList();
     private String speciality;
+    RadioGroup dis_select;
     Bundle i;
 
 
@@ -52,7 +58,7 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AdapterDoctorlist(this);//, getData());
         recyclerview.setAdapter(adapter);
-        recyclerview.addOnItemTouchListener(new RecyclerTouchListener(this,recyclerview,this));
+        recyclerview.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerview, this));
         data = new ArrayList<>();
         if (savedInstanceState == null) {
             i = getIntent().getExtras();
@@ -64,7 +70,17 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
         } else {
             speciality = (String) savedInstanceState.getSerializable("Speciality");
         }
+        //////location of user////////
+        GPSTracker gps = new GPSTracker(this);
+        double latitude = gps.getLatitude();
+        double longitude = gps.getLongitude();
+        Log.d("GPS",latitude+","+longitude);
+        ParseGeoPoint point = new ParseGeoPoint(latitude,longitude);
+        //////////////////////////////
+
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
+        if(latitude!=0.0 && longitude!=0.0)
+            query.whereWithinKilometers("location",point,10);////static value 10km
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, com.parse.ParseException e) {

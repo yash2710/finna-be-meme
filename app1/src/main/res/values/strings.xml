@@ -13,4 +13,5 @@
     <string name="title_activity_test">test</string>
     <string name="test">Large Text</string>
     <string name="Test">test</string>
+    <string name="title_activity_patient_details">patient_details</string>
 </resources>
