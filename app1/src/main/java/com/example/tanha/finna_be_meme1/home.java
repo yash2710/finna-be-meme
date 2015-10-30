@@ -1,6 +1,5 @@
 package com.example.tanha.finna_be_meme1;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class home extends AppCompatActivity implements Click{
+public class home extends AppCompatActivity implements ClickListener {
     private RecyclerView view;
     //private RecyclerView.LayoutManager mLayoutManager;
     private MyAdapter mAdapter;
@@ -39,6 +38,7 @@ public class home extends AppCompatActivity implements Click{
 
         mAdapter = new MyAdapter(this);
         view.setAdapter(mAdapter);
+        view.addOnItemTouchListener(new RecyclerTouchListener(this,view,this));
         appoint1=new ArrayList<>();
         String username=getIntent().getExtras().getString("email");
         ParseQuery<ParseObject> query = ParseQuery.getQuery("appointment");
@@ -99,14 +99,22 @@ public class home extends AppCompatActivity implements Click{
 //
 //    }
 
-
-
     @Override
     public void onClick(View v, int position) {
-       Intent i=new Intent(home.this,patient_details.class);
-       i.putExtra("email",appoint1.get(position).id);
-       startActivity(i);
-
 
     }
+
+    @Override
+    public void onLongClick(View v, int position) {
+
+    }
+
+    //    @Override
+//    public void onClick(View v, int position) {
+//       Intent i=new Intent(home.this,patient_details.class);
+//       i.putExtra("email",appoint1.get(position).id);
+//       startActivity(i);
+//
+//
+//    }
 }
