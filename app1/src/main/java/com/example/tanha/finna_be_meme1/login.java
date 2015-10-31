@@ -26,6 +26,10 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        lemail=(EditText)findViewById(R.id.email);
+        lpassword=(EditText)findViewById(R.id.password);
+        lemail.setText("dr_sanjiv@gmail.com");
+        lpassword.setText("dr_sanjiv");
         ParseUser user = new ParseUser();
         //user.setUsername("dr_abc@yahoo.com");
         //user.setPassword("abc");
@@ -43,8 +47,7 @@ public class login extends AppCompatActivity {
                 }
             }
         });
-        lemail=(EditText)findViewById(R.id.email);
-        lpassword=(EditText)findViewById(R.id.password);
+
         llogin=(Button)findViewById(R.id.loginb);
         llogin.setOnClickListener(new View.OnClickListener() {
             @Override
