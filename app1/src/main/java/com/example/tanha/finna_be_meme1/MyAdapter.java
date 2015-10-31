@@ -17,6 +17,7 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -61,7 +62,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         final String Id = (appoint.get(position)).id;
-        final String name = (appoint.get(position)).name;
+        Date date = (appoint.get(position)).date;
+        final String name = date.getDate()+"/"+date.getMonth()+"/"+(date.getYear()+1900)+"  "+date.getHours()+":"+date.getMinutes();
         holder.txtHeader.setText(Id);
         holder.txtFooter.setText(name);
 

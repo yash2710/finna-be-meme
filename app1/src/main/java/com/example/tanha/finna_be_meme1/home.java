@@ -15,6 +15,7 @@ import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 
@@ -41,22 +42,22 @@ public class home extends AppCompatActivity implements ClickListener {
         view.addOnItemTouchListener(new RecyclerTouchListener(this,view,this));
         appoint1=new ArrayList<>();
         String username=getIntent().getExtras().getString("email");
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("appointment");
-        query.whereEqualTo("dr_username",username);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("appointment_user");
+        query.whereEqualTo("D_email",username);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, com.parse.ParseException e) {
                 if (e == null) {
-                    Log.d("dr_username", "Retrieved " + list.size());
+                    Log.d("D_email", "Retrieved " + list.size());
                     for (int i = 0; i < list.size(); i++) {
 
-                        String id = (String) list.get(i).get("p_id");
-                        String name = (String) list.get(i).get("p_name");
+                        String id = (String) list.get(i).get("P_email");
+                        Date date = list.get(i).getDate("App_date");
 
-                        Appoint a = new Appoint(id, name);
+                        Appoint a = new Appoint(id, date);
                         appoint1.add(a);
-                        Log.d("hi", a.id + a.name);
-                        Log.d("Hello", appoint1.get(i).id + appoint1.get(i).name);
+                        Log.d("hi", a.id + a.date);
+                        Log.d("Hello", appoint1.get(i).id + appoint1.get(i).date);
                     }
                 } else {
                     Log.d("dr_username", "Error: " + e.getMessage());
