@@ -54,7 +54,7 @@ public class home extends AppCompatActivity implements ClickListener {
 
                         String id = (String) list.get(i).get("p_id");
                         String name = (String) list.get(i).get("p_name");
-                        Date date = list.get(i).getDate("App_date");                        String time=(String) list.get(i).get("time");
+                        Date date = list.get(i).getDate("App_date");
                         String contact=(String) list.get(i).get("contact");
 
                         Appoint a = new Appoint(id, date);
