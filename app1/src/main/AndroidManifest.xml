@@ -36,6 +36,10 @@
             android:name=".patient_details"
             android:label="@string/title_activity_patient_details" >
         </activity>
+        <activity
+            android:name=".edit"
+            android:label="@string/title_activity_edit" >
+        </activity>
     </application>
 
 </manifest>
