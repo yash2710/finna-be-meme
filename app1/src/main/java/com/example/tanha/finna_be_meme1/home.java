@@ -22,6 +22,8 @@ import java.util.List;
 
 public class home extends AppCompatActivity implements ClickListener {
     private RecyclerView view;
+    String id;
+    Date date;
     //private RecyclerView.LayoutManager mLayoutManager;
     private MyAdapter mAdapter;
     List<Appoint> appoint1=Collections.emptyList();
@@ -52,10 +54,10 @@ public class home extends AppCompatActivity implements ClickListener {
                     Log.d("D_email", "Retrieved " + list.size());
                     for (int i = 0; i < list.size(); i++) {
 
-                        String id = (String) list.get(i).get("p_id");
-                        String name = (String) list.get(i).get("p_name");
-                        Date date = list.get(i).getDate("App_date");
-                        String contact=(String) list.get(i).get("contact");
+                         id = (String) list.get(i).get("P_email");
+                        //String name = (String) list.get(i).get("p_name");
+                         date = list.get(i).getDate("App_date");
+                        //String contact=(String) list.get(i).get("contact");
 
                         Appoint a = new Appoint(id, date);
                         //Appoint a = new Appoint(id,name,date,contact);
@@ -72,7 +74,9 @@ public class home extends AppCompatActivity implements ClickListener {
 
             }
         });
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -108,9 +112,9 @@ public class home extends AppCompatActivity implements ClickListener {
     public void onClick(View v, int position) {
         Intent i=new Intent(home.this,patient_details.class);
         i.putExtra("email",appoint1.get(position).id);
-        i.putExtra("name",appoint1.get(position).name);
+        //i.putExtra("name",appoint1.get(position).name);
         i.putExtra("date",appoint1.get(position).date.toString());
-        i.putExtra("contact",appoint1.get(position).contact);
+        //i.putExtra("contact",appoint1.get(position).contact);
         startActivity(i);
 
     }
