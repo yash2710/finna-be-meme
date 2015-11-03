@@ -6,100 +6,120 @@
     android:background="#ffffffff"
     android:orientation="horizontal">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/Photo"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/Doctor_name"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Doctor_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="7"
+                    android:capitalize="sentences"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Dummy text"
+                    android:textColor="#ff000000"
+                    android:textIsSelectable="false"
+                    android:textSize="13dp" />
+
+                <ImageView
+                    android:id="@+id/myplace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_myplaces" />
+
+                <TextView
+                    android:id="@+id/likes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1" />
+            </LinearLayout>
+            <!--<TextView-->
+            <!--android:id="@+id/Speciality"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:layout_marginBottom="2dp"-->
+            <!--android:padding="1dp"-->
+            <!--android:text="Detail"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="13dp"-->
+            <!--android:textColor="#ffa8a8a8" />-->
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="2dp"
-                android:layout_weight="7"
-                android:capitalize="sentences"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="Dummy text"
-                android:textColor="#ff000000"
-                android:textIsSelectable="false"
-                android:textSize="13dp" />
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/myplace"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_myplaces" />
+                <TextView
+                    android:id="@+id/Degrees"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="30dp"
+                    android:gravity="center"
+                    android:padding="1dp"
+                    android:text="Detail"
+                    android:textColor="#ffa8a8a8"
+                    android:textSize="13dp" />
 
-            <TextView
-                android:id="@+id/likes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1" />
-        </LinearLayout>
-        <!--<TextView-->
-        <!--android:id="@+id/Speciality"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="20dp"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_gravity="center_vertical"-->
-        <!--android:layout_marginLeft="30dp"-->
-        <!--android:layout_marginBottom="2dp"-->
-        <!--android:padding="1dp"-->
-        <!--android:text="Detail"-->
-        <!--android:gravity="center"-->
-        <!--android:textSize="13dp"-->
-        <!--android:textColor="#ffa8a8a8" />-->
-        <TextView
-            android:id="@+id/Degrees"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="30dp"
-            android:gravity="center"
-            android:padding="1dp"
-            android:text="Detail"
-            android:textColor="#ffa8a8a8"
-            android:textSize="13dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/Experience"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30dp"
+                        android:gravity="center"
+                        android:padding="1dp"
+                        android:text="Detail"
+                        android:textColor="#ffa8a8a8"
+                        android:textSize="13dp" />
 
-            <TextView
-                android:id="@+id/Experience"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
-                android:gravity="center"
-                android:padding="1dp"
-                android:text="Detail"
-                android:textColor="#ffa8a8a8"
-                android:textSize="13dp" />
-
-            <TextView
-                android:id="@+id/Fees"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
-                android:gravity="center"
-                android:padding="1dp"
-                android:text="Detail"
-                android:textColor="#ffa8a8a8"
-                android:textSize="13dp" />
+                    <TextView
+                        android:id="@+id/Fees"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30dp"
+                        android:gravity="center"
+                        android:padding="1dp"
+                        android:text="Detail"
+                        android:textColor="#ffa8a8a8"
+                        android:textSize="13dp" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
