@@ -53,7 +53,6 @@ public class home extends AppCompatActivity implements ClickListener {
                 if (e == null) {
                     Log.d("D_email", "Retrieved " + list.size());
                     for (int i = 0; i < list.size(); i++) {
-
                          id = (String) list.get(i).get("P_email");
                         //String name = (String) list.get(i).get("p_name");
                          date = list.get(i).getDate("App_date");
