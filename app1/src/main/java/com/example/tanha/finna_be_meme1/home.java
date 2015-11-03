@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ import java.util.List;
 public class home extends AppCompatActivity implements ClickListener {
     private RecyclerView view;
     String id,obid;
+    Toolbar toolbar;
     Date date;
     //private RecyclerView.LayoutManager mLayoutManager;
     private MyAdapter mAdapter;
@@ -33,6 +35,8 @@ public class home extends AppCompatActivity implements ClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         view=(RecyclerView)findViewById(R.id.recycler_view);
 
         view.setHasFixedSize(true);
@@ -95,7 +99,8 @@ public class home extends AppCompatActivity implements ClickListener {
             return true;
         }
         if (id == R.id.profile){
-
+            Intent i=new Intent(home.this,profile.class);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

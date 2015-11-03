@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.GetCallback;
@@ -17,10 +18,11 @@ import com.parse.ParseQuery;
 import java.util.Date;
 
 public class edit extends AppCompatActivity implements View.OnClickListener{
-    EditText p_id,p_name,date,time,contact;
+    EditText date,time;
+    TextView p_id,p_name,contact;
     Button done;
     Bundle i;
-    String obid;
+    String obid,date1,time1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,16 +31,16 @@ public class edit extends AppCompatActivity implements View.OnClickListener{
         i=getIntent().getExtras();
         String email=i.getString("email");
         String name=i.getString("name");
-        String date1=i.getString("date");
-        String time1=i.getString("time");
+         date1=i.getString("date");
+         time1=i.getString("time");
         String contact1=i.getString("contact");
         obid=i.getString("obid");
 
-        p_id=(EditText)findViewById(R.id.ep_id);
-        p_name=(EditText)findViewById(R.id.ep_name);
+        p_id=(TextView)findViewById(R.id.ep_id);
+        p_name=(TextView)findViewById(R.id.ep_name);
         date=(EditText)findViewById(R.id.edate);
         time=(EditText)findViewById(R.id.etime);
-        contact=(EditText)findViewById(R.id.econtact);
+        contact=(TextView)findViewById(R.id.econtact);
         done=(Button)findViewById(R.id.done_btn);
         done.setOnClickListener(this);
 
@@ -78,7 +80,8 @@ public class edit extends AppCompatActivity implements View.OnClickListener{
             query.getInBackground(obid, new GetCallback<ParseObject>() {
                 @Override
                 public void done(ParseObject parseObject, ParseException e) {
-                    parseObject.put("App_date",new Date(date.getText().toString()));
+                    String dd=date1+time1;
+                    parseObject.put("App_date",new Date(dd));
                     parseObject.saveInBackground();
                 }
             });
