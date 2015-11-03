@@ -74,9 +74,9 @@ public class AdapterPatientList extends RecyclerView.Adapter<AdapterPatientList.
             super(itemView);
 
             Doctor_name=(TextView)itemView.findViewById(R.id.Doctor_name);
-            Date=(TextView) itemView.findViewById(R.id.Date);
-            Appointmentstatus_doctor=(TextView) itemView.findViewById(R.id.Appointmentstatus_doctor);
-            Appointmentstatus_patient = (TextView) itemView.findViewById(R.id.Appointmentstatus_patient);
+//            Date=(TextView) itemView.findViewById(R.id.Date);
+//            Appointmentstatus_doctor=(TextView) itemView.findViewById(R.id.Appointmentstatus_doctor);
+//            Appointmentstatus_patient = (TextView) itemView.findViewById(R.id.Appointmentstatus_patient);
         }
 
     }
