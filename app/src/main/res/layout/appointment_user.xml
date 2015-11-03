@@ -1,65 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginTop="5dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="#ffffffff">
-
-    <ImageView
-        android:id="@+id/doctordp"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
-        android:padding="1dp"
-        android:src="@mipmap/ic_launcher" />
+    android:layout_marginTop="5dp"
+    android:background="#ffffffff"
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Doctor_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="7"
+                android:capitalize="sentences"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="Dummy text"
+                android:textColor="#ff000000"
+                android:textIsSelectable="false"
+                android:textSize="13dp" />
+
+
+
         <TextView
-            android:id="@+id/doctorname"
+            android:id="@+id/Date"
             android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:padding="1dp"
+            android:inputType="datetime"
+            android:text="Detail"
+            android:textColor="#ffa8a8a8"
+            android:textSize="13dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="30dp"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"
-            android:padding="2dp"
-            android:text="Dummy text"
-            android:gravity="center"
-            android:capitalize="sentences"
-            android:textSize="20dp"
-            android:textIsSelectable="false"
-            android:textColor="#ff000000" />
+            android:orientation="horizontal">
+
         <TextView
-            android:id="@+id/doctordetails"
+            android:id="@+id/Appointmentstatus_doctor"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="30dp"
-            android:layout_marginBottom="2dp"
-            android:padding="1dp"
-            android:text="Detail"
             android:gravity="center"
-            android:textSize="13dp"
-            android:textColor="#ffa8a8a8" />
+            android:padding="1dp"
+            android:inputType="datetime"
+            android:text="Doctor: not confirned"
+            android:textColor="#ffa8a8a8"
+            android:textSize="13dp" />
+
         <TextView
-            android:id="@+id/timestamp"
+            android:id="@+id/Appointmentstatus_patient"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="30dp"
-            android:padding="1dp"
-            android:text="Detail"
             android:gravity="center"
+            android:padding="1dp"
+            android:text="You: requested"
             android:textColor="#ffa8a8a8"
             android:textSize="13dp" />
     </LinearLayout>
-</LinearLayout>
-    <!--android:layout_gravity="center_vertical"imageview-->
+        </LinearLayout>
+    </LinearLayout>

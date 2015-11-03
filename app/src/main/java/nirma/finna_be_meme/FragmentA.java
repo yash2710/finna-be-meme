@@ -1,11 +1,13 @@
 package nirma.finna_be_meme;
 
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,7 @@ import java.util.List;
  */
 public class FragmentA extends Fragment {
 
-private Adapter adapter;
+    private Adapter adapter;
     private RecyclerView recyclerview;
 
     public FragmentA() {
@@ -46,10 +48,10 @@ private Adapter adapter;
         recyclerview = (RecyclerView) layout.findViewById(R.id.tablist);
         adapter = new Adapter(getActivity(), getData());
         recyclerview.setAdapter(adapter);
-        recyclerview.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         return layout;
-    }
 
+    }
 
 
 }

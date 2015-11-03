@@ -20,6 +20,7 @@ import com.parse.ParseQuery;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -79,7 +80,13 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
         InformationDoctorlist current = data.get(position);
         holder.Doctor_name.setText(current.Doctor_name);
         holder.Fees.setText("Fees:" + current.Fees);
-        holder.Degrees.setText(current.Degrees);
+        String Degrees = "";
+        for (String s : current.Degrees)
+        {
+            Degrees += s + " ";
+        }
+        holder.Degrees.setText(Degrees);
+        //holder.Degrees.setText(current.Degrees);
         holder.Experience.setText(current.Experience + " yrs exp.");
 //        holder.Speciality.setText(current.Speciality);
         holder.Likes.setText(current.Likes);

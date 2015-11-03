@@ -11,6 +11,7 @@ import com.parse.ParseImageView;
 import java.net.URI;
 import java.security.Timestamp;
 import java.sql.Array;
+import java.util.ArrayList;
 
 /**
  * Created by rajiv on 04-09-2015.
@@ -23,11 +24,12 @@ public class InformationDoctorlist {
     int Doctorid;
     String Doctor_name;
     String Speciality;
-    String Degrees;
+    ArrayList<String> Degrees;
     String Fees;
     String Experience;
     String Likes;
-    String Days;
-    String Time;
+    String email;
+    ArrayList<String> Days;
+    ArrayList<String> Time;
     //Drawable photo;
 }

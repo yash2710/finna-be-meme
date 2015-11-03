@@ -15,7 +15,9 @@
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
     <string name="action_example">Example action</string>
-
+    <string name="pass_hint">password</string>
+    <string name="login_btn">Login</string>
+    <string name="email_hint">E-mail address</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_filterdata">Filterdata</string>
@@ -29,4 +31,7 @@
     <string name="title_activity_pre_mainactivity">pre_mainactivity</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_user_login">User_login</string>
+    <string name="title_activity_registration">Registration</string>
+    <string name="title_activity_appointment_detail">AppointmentDetail</string>
 </resources>

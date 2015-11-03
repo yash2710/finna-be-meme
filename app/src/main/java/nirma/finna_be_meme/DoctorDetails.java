@@ -17,6 +17,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+
 /**
  * Created by Yash on 12-Aug-15.
  */
@@ -37,19 +39,35 @@ public class DoctorDetails extends AppCompatActivity implements View.OnClickList
         setUpMapIfNeeded();
         name = (TextView) findViewById(R.id.name);
         qualification = (TextView) findViewById(R.id.qual);
+        String degree="";
+        for(String s: i.getStringArrayList("qual")){
+            degree+=s + " ";
+        }
         time = (TextView) findViewById(R.id.time);
         days = (TextView) findViewById(R.id.cal);
         speciality = (TextView) findViewById(R.id.speciality);
-        name.setText(i.getString("name","Dr. Sanjiv Haribhakti"));
-        qualification.setText(i.getString("qual","-"));
-        time.setText(i.getString("open_hours","-"));
-        days.setText(i.getString("open_days","-"));
+        name.setText(i.getString("name", "Dr. Sanjiv Haribhakti"));
+        qualification.setText(degree);
+        time.setText(i.getString("open_hours", "-"));
+        String day="";
+        for(String s: i.getStringArrayList("open_days")){
+            day+=s + " ";
+        }
+        days.setText(day);
         speciality.setText(i.getString("Speciality", "Gynecologist"));
-        Button book=(Button)findViewById(R.id.book);
+        Button book = (Button) findViewById(R.id.book);
         book.setOnClickListener(this);
-        this.setTitle(i.getString("name","Dr. Sanjiv Haribhakti"));
-    }
+        this.setTitle(i.getString("name", "Dr. Sanjiv Haribhakti"));
+        Databasehandler db = new Databasehandler(this);
+        db.addPatient(new Data(0, "Katha"));
+        List<Data> data = db.getAllData();
 
+        for (Data cn : data) {
+            String log = "Id: " + cn.getPatient_id() + " ,Name: " + cn.getPatient_name();
+            // Writing Contacts to log
+            Log.d("Name: ", log);
+        }
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -86,8 +104,9 @@ public class DoctorDetails extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
      if(v==findViewById(R.id.book)){
-         Intent i=new Intent(this,Login.class);
-         startActivity(i);
+         Intent intent=new Intent(this,Login.class);
+         intent.putExtra("email",i.getString("email"));
+         startActivity(intent);
      }
     }
 }
