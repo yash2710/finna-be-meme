@@ -11,16 +11,19 @@ public class Appoint {
     String time;
     String contact;
     Date date;
+    String obid;
     public Appoint(String id, String name, Date date, String time, String contact) {
         this.id = id;
         this.name = name;
         this.time = time;
         this.contact = contact;
         this.date = date;
+        //this.obid=obid;
         
     }
-    public Appoint(String id,Date date){
+    public Appoint(String id,Date date,String obid){
         this.id=id;
         this.date=date;
+        this.obid=obid;
     }
 }

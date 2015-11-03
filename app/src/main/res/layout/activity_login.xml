@@ -9,63 +9,12 @@
         layout="@layout/app_bar" />
 
     <EditText
-        android:id="@+id/patient_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/app_bar"
-        android:layout_margin="5dp"
-        android:hint="Patient Name"
-        android:textColor="#ff040404" />
-
-    <LinearLayout
-        android:id="@+id/db"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/patient_name"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Date Of Birth: " />
-
-        <Button
-            android:id="@+id/dob"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Select"
-            android:textColor="#ff040404" />
-    </LinearLayout>
-
-
-    <RadioGroup
-        android:id="@+id/gendergroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/db">
-
-        <RadioButton
-            android:id="@+id/female"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="FEMALE" />
-
-        <RadioButton
-            android:id="@+id/male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="MALE" />
-    </RadioGroup>
-
-    <EditText
         android:id="@+id/problem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/gendergroup"
+        android:layout_height="100dp"
+        android:layout_below="@id/app_bar"
         android:layout_margin="5dp"
+        android:background="#ffffff"
         android:hint="Problem Description"
         android:textColor="#ff040404" />
 
@@ -79,16 +28,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Appointment Date: " />
+            android:hint="Appointment Date: "
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
 
         <Button
             android:id="@+id/appointmentdate"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Select"
-            android:textColor="#ff040404" />
+            android:text="Select"
+            android:background="#ff0097a7"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:textColor="#ffffffff" />
     </LinearLayout>
 
     <Button
@@ -100,5 +53,6 @@
         android:background="#ff0097a7"
         android:padding="10dp"
         android:text="Confirm"
+        android:layout_margin="10dp"
         android:textColor="#ffffffff" />
 </RelativeLayout>

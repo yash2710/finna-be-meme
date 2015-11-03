@@ -38,15 +38,20 @@ public class MainActivity extends AppCompatActivity {
     private Adapter adapter;
     private View containerview;
     private ViewPager mPager;
+    Bundle bundle;
+    public static String email;
     private SlidingTabLayout mTabs;
     CharSequence Titles[] = {"Home", "Events"};
     int Numboftabs = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);//check
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
+        bundle = getIntent().getExtras();
+        email = bundle.getString("email");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         this.setTitle("Appoint Me!");
         mTabs.setDistributeEvenly(true);
         mTabs.setViewPager(mPager);
+        Log.d("email", email + "");
     }
 
 
@@ -82,9 +88,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, SubActivity.class));
         }
 
-        if (id == R.id.details){
-            Intent i = new Intent(MainActivity.this,DoctorDetails.class);
-            i.putExtra("hhi","hi");
+        if (id == R.id.details) {
+            Intent i = new Intent(MainActivity.this, DoctorDetails.class);
+            i.putExtra("hhi", "hi");
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);
@@ -103,19 +109,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             //MyFragment myFragment = MyFragment.getInstance(position);
-            Fragment fragment=null;
-            if(position==0)
-                fragment=new FragmentA();
-            else fragment=new FragmentA();
+            Fragment fragment = null;
+            if (position == 0) {
+                fragment = new FragmentA();
+            } else {
+                fragment = new FragmentA();
+            }
             return fragment;
         }
 
         @TargetApi(Build.VERSION_CODES.LOLLIPOP)
         public CharSequence getPageTitle(int position) {
-            if(position==0){
+            if (position == 0) {
                 return "Home";
-            }
-            else return "Appointment";
+            } else return "Appointment";
 //            Drawable drawable = getResources().getDrawable(icons[position],null);
 //            //drawable.setBounds(0,0,40,40);
 //            ImageSpan imagespan = new ImageSpan(drawable);
