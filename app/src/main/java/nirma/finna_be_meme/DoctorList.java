@@ -94,6 +94,7 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
                                     String Doctor_name = (String) list.get(i).get("Doctor_name");
                                     ArrayList<String> Degrees = (ArrayList<String>) list.get(i).get("Degrees");
                                     String Fees = (String) list.get(i).get("Fees");
+                                    String email=(String)list.get(i).get("email");
                                     String Experience = (String) list.get(i).get("Experience");
                                     String Likes=(String)list.get(i).get("Likes");
                                     ArrayList<String> Days = (ArrayList<String>) list.get(i).get("Days");
@@ -108,6 +109,7 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
                                     current.Days = Days;
                                     current.Time = Time;
                                     current.Doctorid=Doctorid;//current.uri=uri;
+                                    current.email=email;
                                     data.add(current);
                                     Log.d("doctor1", "hello this is katha123" + data.size());
                                     // }
@@ -159,6 +161,7 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
         i.putExtra("open_hours",data.get(position).Time);
         i.putExtra("open_days",data.get(position).Days);
         i.putExtra("hhi","hi");
+        i.putExtra("email",data.get(position).email);
         //put all other extras that can be passed to the activity
         startActivity(i);
     }

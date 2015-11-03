@@ -42,6 +42,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     Calendar cal;
     String email = MainActivity.email;
     Bundle bundle;
+    int appid;
     private List<InformationAppointmentlist> data = Collections.emptyList();
 
     @Override
@@ -151,33 +152,40 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 Toast.makeText(Login.this, "some fields are empty :)",
                         Toast.LENGTH_LONG).show();
             } else {
-                try {
-                    ParseQuery<ParseObject> query = ParseQuery.getQuery("appointment");
-                    query.orderByDescending("App_ID");
+                    final ParseObject patient = new ParseObject("appointment_user");
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery("appointment_user");
                     query.findInBackground(new FindCallback<ParseObject>() {
                         @Override
                         public void done(List<ParseObject> list, ParseException e) {
                             if (e == null) {
-                                int appid = data.get(list.size() - 1).App_ID;
-                                Log.d("login",""+appid);
+                                appid = list.size() + 1;
+                                Log.d("login", "" + appid);
+                                patient.put("P_email", email);
+                                patient.put("D_email", bundle.getString("email", ""));
+                                patient.put("Problem_description", problem.getText().toString());
+                                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                                try {
+                                    patient.put("App_date", dateFormat.parse(appointmentdate.getText().toString()));
+                                } catch (java.text.ParseException e1) {
+                                    e1.printStackTrace();
+                                }
+                                Log.d("login", "" + appid);
+                                patient.put("App_ID", appid);
+                                patient.put("doctor_confirm", false);
+                                patient.put("patient_confirm", true);
+                                patient.put("Doctor_name",DoctorDetails.dname);
                             } else {
 
                             }
                         }
                     });
-                    ParseObject patient = new ParseObject("appointment_user");
-                    patient.put("P_email", email);
-                    patient.put("D_email", bundle.getString("email"));
-                    patient.put("Problem_description", problem.getText().toString());
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-                    patient.put("App_date", dateFormat.parse(appointmentdate.getText().toString()));
-                    patient.put("doctor_confirm", false);
-                    patient.put("patient_confirm", true);
+
+
                     patient.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
-                            if (e != null)
-                                Toast.makeText(getApplicationContext(), e + "appointment register", Toast.LENGTH_LONG).show();
+                            if (e == null)
+                                Toast.makeText(getApplicationContext(),"appointment register", Toast.LENGTH_LONG).show();
                             else {
                                 Toast.makeText(getApplicationContext(), "Sorry for inconvenionce!! There is some error :(", Toast.LENGTH_LONG).show();
                                 Intent i = new Intent(Login.this, User_login.class);
@@ -185,10 +193,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             }
                         }
                     });
-                } catch (java.text.ParseException e) {
-                    e.printStackTrace();
-                    Log.d("error", "error");
-                }
             }
         }
     }

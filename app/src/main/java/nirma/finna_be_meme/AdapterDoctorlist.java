@@ -56,7 +56,11 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
         InformationDoctorlist current = data.get(position);
         holder.Doctor_name.setText(current.Doctor_name);
         holder.Fees.setText("Fees:" + current.Fees);
-        holder.Degrees.setText(current.Degrees.toString());
+        String degree="";
+        for(String s : current.Degrees){
+            degree+=s;
+        }
+        holder.Degrees.setText(degree);
         holder.Experience.setText(current.Experience + " yrs exp.");
         holder.Likes.setText(current.Likes);
 

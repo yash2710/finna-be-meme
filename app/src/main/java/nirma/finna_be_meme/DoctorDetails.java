@@ -28,6 +28,7 @@ public class DoctorDetails extends AppCompatActivity implements View.OnClickList
     GoogleMap mMap;
     TextView name,qualification,time,days,speciality;
     Toolbar toolbar;
+    static String dname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,7 @@ public class DoctorDetails extends AppCompatActivity implements View.OnClickList
         days = (TextView) findViewById(R.id.cal);
         speciality = (TextView) findViewById(R.id.speciality);
         name.setText(i.getString("name", "Dr. Sanjiv Haribhakti"));
+        dname=name.getText().toString();
         qualification.setText(degree);
         time.setText(i.getString("open_hours", "-"));
         String day="";
