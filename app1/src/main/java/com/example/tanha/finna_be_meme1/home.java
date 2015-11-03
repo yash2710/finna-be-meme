@@ -22,7 +22,7 @@ import java.util.List;
 
 public class home extends AppCompatActivity implements ClickListener {
     private RecyclerView view;
-    String id;
+    String id,obid;
     Date date;
     //private RecyclerView.LayoutManager mLayoutManager;
     private MyAdapter mAdapter;
@@ -38,8 +38,6 @@ public class home extends AppCompatActivity implements ClickListener {
         view.setHasFixedSize(true);
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         view.setLayoutManager(mLayoutManager);
-
-
         mAdapter = new MyAdapter(this);
         view.setAdapter(mAdapter);
         view.addOnItemTouchListener(new RecyclerTouchListener(this,view,this));
@@ -57,9 +55,10 @@ public class home extends AppCompatActivity implements ClickListener {
                          id = (String) list.get(i).get("P_email");
                         //String name = (String) list.get(i).get("p_name");
                          date = list.get(i).getDate("App_date");
+                        Log.d("date",date.toString());
                         //String contact=(String) list.get(i).get("contact");
-
-                        Appoint a = new Appoint(id, date);
+                        obid=list.get(i).getObjectId().toString();
+                        Appoint a = new Appoint(id, date,obid);
                         //Appoint a = new Appoint(id,name,date,contact);
                         appoint1.add(a);
                         Log.d("hi", a.id + a.date);
@@ -96,7 +95,9 @@ public class home extends AppCompatActivity implements ClickListener {
         if (id == R.id.action_settings) {
             return true;
         }
+        if (id == R.id.profile){
 
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -114,6 +115,7 @@ public class home extends AppCompatActivity implements ClickListener {
         i.putExtra("email",appoint1.get(position).id);
         //i.putExtra("name",appoint1.get(position).name);
         i.putExtra("date",appoint1.get(position).date.toString());
+        i.putExtra("obid",appoint1.get(position).obid);
         //i.putExtra("contact",appoint1.get(position).contact);
         startActivity(i);
 
