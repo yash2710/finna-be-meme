@@ -1,12 +1,7 @@
 package nirma.finna_be_meme;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.RadioGroup;
 
 import com.parse.FindCallback;
 import com.parse.ParseObject;
@@ -23,66 +18,69 @@ import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 
-public class SubActivity extends AppCompatActivity {
-    private RecyclerView recyclerview;
-    static private AdapterPatientList adapter;
+public class AppointmentDetail extends AppCompatActivity implements ClickListener {
 
-    List<InformationPatient> data;
+    private RecyclerView recyclerview;
+    private AdapterAppointment adapter;
+    private List<InformationAppointmentlist> data = Collections.emptyList();
+    Bundle i;
+    String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sub);
+        setContentView(R.layout.activity_appointment_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-        this.setTitle("Appointments");
+        this.setTitle("List of Doctors");
+        i = getIntent().getExtras();
+        email = i.getString("email");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        recyclerview = (RecyclerView)findViewById(R.id.appointmentlist_user);
+        recyclerview = (RecyclerView) findViewById(R.id.appointment);
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
-        //adapter = new AdapterDoctorlist(this);//,getData());
-
-        //recyclerview.setAdapter(adapter);
-
+        adapter = new AdapterAppointment(this);
+        recyclerview.setAdapter(adapter);
+        recyclerview.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerview, this));
         data = new ArrayList<>();
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Patient");
-        query.whereEqualTo("P_id", "1");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("appointment_user");
+        query.whereEqualTo("P_email", email);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, com.parse.ParseException e) {
                 if (e == null) {
-
                     for (int i = 0; i < list.size(); i++) {
-                        InformationPatient current = new InformationPatient();
-                        String Doctorname = (String) list.get(i).get("Doctorname");
-                        String Date = (String) list.get(i).get("Date");
-                        String Appointmentstatus_doctor = (String) list.get(i).get("doctor_confirm");
-                        String Appointmentstatus_patient = (String) list.get(i).get("patient_confirm");
-                        current.Doctorname=Doctorname;
-                        current.Date=Date;
-                        current.Appointmentstatus_doctor=Appointmentstatus_doctor;
-                        current.Appointmentstatus_patient=Appointmentstatus_patient;
+                        String Doctor_name = (String) list.get(i).get("Doctor_name");
+                        String Timestamp = (String) list.get(i).get("App_date");
+                        String confirm = "";
+                        if ((boolean) list.get(i).get("doctor_confirm") && (boolean) list.get(i).get("patient_confirm"))
+                            confirm = "Confirmed";
+                        else if ((boolean) list.get(i).get("doctor_confirm"))
+                            confirm = "Pending";
+                        else
+                            confirm = "Requested";
+                        InformationAppointmentlist current = new InformationAppointmentlist();
+                        current.Doctor_name = Doctor_name;
+                        current.Timestamp = Timestamp;
+                        current.confirm = confirm;
                         data.add(current);
                         Log.d("doctor1", "hello this is katha123" + data.size());
                     }
                 } else {
                     Log.d("doctor", "Error: " + e.getMessage());
                 }
-     //           adapter.setList(data);
+                adapter.setList(data);
             }
         });
-
-        Log.d("doctor1", "data size" + data.size());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_sub, menu);
+        getMenuInflater().inflate(R.menu.menu_appointment_detail, menu);
         return true;
     }
 
@@ -97,10 +95,17 @@ public class SubActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-        if(id==android.R.id.home){
-            NavUtils.navigateUpFromSameTask(this);
-        }
+
         return super.onOptionsItemSelected(item);
     }
-}
 
+    @Override
+    public void onClick(View view, int position) {
+
+    }
+
+    @Override
+    public void onLongClick(View view, int position) {
+
+    }
+}

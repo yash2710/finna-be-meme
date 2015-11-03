@@ -27,7 +27,7 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private LayoutInflater inflater;
     private Context context;
-
+    String email=MainActivity.email;
     List<Information> data = Collections.emptyList();
 
     public Adapter(Context context, List<Information> data) {
@@ -71,7 +71,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
         @Override
         public void onClick(View v) {
-
+            Log.d("email","hello"+ email);
             Log.d("katha", "hello111");
             //context.startActivity(new Intent(context,DoctorList.class));
             Intent i = new Intent(context, DoctorList.class);

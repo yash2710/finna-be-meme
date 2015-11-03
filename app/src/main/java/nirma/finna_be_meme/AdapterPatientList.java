@@ -26,26 +26,24 @@ import java.util.List;
 /**
  * Created by rajiv on 04-09-2015.
  */
-public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.MyViewHolder> {
-
+public class AdapterPatientList extends RecyclerView.Adapter<AdapterPatientList.MyViewHolder> {
     private LayoutInflater inflater;
     private Context context;
-    List<InformationDoctorlist> data = Collections.emptyList();
+    List<InformationPatient> data = Collections.emptyList();
 
-    public AdapterDoctorlist(Context context){
+    public AdapterPatientList(Context context){
         this.context=context;
         inflater = LayoutInflater.from(context);
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //View view = inflater.inflate(R.layout.appointment_user, parent, false);
         View view = inflater.inflate(R.layout.doctorlistlayout, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
 
-    public void setList(List<InformationDoctorlist> data){
+    public void setList(List<InformationPatient> data){
         this.data=data;
         Log.d("doctor1","here");
         notifyItemRangeChanged(0,data.size());
@@ -53,12 +51,11 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        InformationDoctorlist current = data.get(position);
-        holder.Doctor_name.setText(current.Doctor_name);
-        holder.Fees.setText("Fees:" + current.Fees);
-        holder.Degrees.setText(current.Degrees.toString());
-        holder.Experience.setText(current.Experience + " yrs exp.");
-        holder.Likes.setText(current.Likes);
+        InformationPatient current = data.get(position);
+        holder.Doctor_name.setText(current.Doctorname);
+        holder.Date.setText(current.Date);
+        holder.Appointmentstatus_patient.setText("You: "+current.Appointmentstatus_patient);
+        holder.Appointmentstatus_doctor.setText("Doctor" +current.Appointmentstatus_doctor);
 
     }
 
@@ -68,21 +65,20 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
         return data.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {//implements View.OnClickListener
+    class MyViewHolder extends RecyclerView.ViewHolder {
         TextView Doctor_name;
-        TextView Speciality;
-        TextView Degrees;
-        TextView Fees;
-        TextView Experience;
-        TextView Likes;
+        TextView Date;
+        TextView Appointmentstatus_doctor;
+        TextView Appointmentstatus_patient;
         public MyViewHolder(View itemView) {
             super(itemView);
+
             Doctor_name=(TextView)itemView.findViewById(R.id.Doctor_name);
-            Degrees=(TextView) itemView.findViewById(R.id.Degrees);
-            Fees=(TextView) itemView.findViewById(R.id.Fees);
-            Experience = (TextView) itemView.findViewById(R.id.Experience);
-            Likes = (TextView) itemView.findViewById(R.id.likes);
+            Date=(TextView) itemView.findViewById(R.id.Date);
+            Appointmentstatus_doctor=(TextView) itemView.findViewById(R.id.Appointmentstatus_doctor);
+            Appointmentstatus_patient = (TextView) itemView.findViewById(R.id.Appointmentstatus_patient);
         }
+
     }
 }
 

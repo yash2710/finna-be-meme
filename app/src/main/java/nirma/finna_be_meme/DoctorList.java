@@ -79,44 +79,44 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
         //////////////////////////////
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
-        if(latitude!=0.0 && longitude!=0.0)
-            query.whereWithinKilometers("location",point,10);////static value 10km
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, com.parse.ParseException e) {
-                if (e == null) {
+                if(latitude!=0.0 && longitude!=0.0)
+                    query.whereWithinKilometers("location",point,10);////static value 10km
+                query.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(List<ParseObject> list, com.parse.ParseException e) {
+                        if (e == null) {
 
-                    for (int i = 0; i < list.size(); i++) {
-                        String Speciality = (String) list.get(i).get("Speciality");
-                        Log.d("doctor1", speciality + Speciality );
-                        if (speciality.equalsIgnoreCase(Speciality)) {
-                            int Doctorid = (int) list.get(i).get("Doctorid");
-                            String Doctor_name = (String) list.get(i).get("Doctor_name");
-                            String Degrees = (String) list.get(i).get("Degrees");
-                            String Fees = (String) list.get(i).get("Fees");
-                            String Experience = (String) list.get(i).get("Experience");
-                            String Likes=(String)list.get(i).get("Likes");
-                            String Days = (String) list.get(i).get("Days");
-                            String Time=(String)list.get(i).get("Time");
-                            InformationDoctorlist current = new InformationDoctorlist();
-                            current.Doctor_name = Doctor_name;
-                            current.Speciality = Speciality;
-                            current.Degrees = Degrees;
-                            current.Fees = Fees;
-                            current.Experience = Experience;
-                            current.Likes = Likes;
-                            current.Days = Days;
-                            current.Time = Time;
-                            current.Doctorid=Doctorid;//current.uri=uri;
-                            data.add(current);
-                            Log.d("doctor1", "hello this is katha123" + data.size());
-                            // }
+                            for (int i = 0; i < list.size(); i++) {
+                                String Speciality = (String) list.get(i).get("Speciality");
+                                Log.d("doctor1", speciality + Speciality );
+                                if (speciality.equalsIgnoreCase(Speciality)) {
+                                    int Doctorid = (int) list.get(i).get("Doctorid");
+                                    String Doctor_name = (String) list.get(i).get("Doctor_name");
+                                    ArrayList<String> Degrees = (ArrayList<String>) list.get(i).get("Degrees");
+                                    String Fees = (String) list.get(i).get("Fees");
+                                    String Experience = (String) list.get(i).get("Experience");
+                                    String Likes=(String)list.get(i).get("Likes");
+                                    ArrayList<String> Days = (ArrayList<String>) list.get(i).get("Days");
+                                    ArrayList<String> Time=(ArrayList<String>)list.get(i).get("Time");
+                                    InformationDoctorlist current = new InformationDoctorlist();
+                                    current.Doctor_name = Doctor_name;
+                                    current.Speciality = Speciality;
+                                    current.Degrees = Degrees;
+                                    current.Fees = Fees;
+                                    current.Experience = Experience;
+                                    current.Likes = Likes;
+                                    current.Days = Days;
+                                    current.Time = Time;
+                                    current.Doctorid=Doctorid;//current.uri=uri;
+                                    data.add(current);
+                                    Log.d("doctor1", "hello this is katha123" + data.size());
+                                    // }
+                                }
+                            }
+                        } else {
+                            Log.d("doctor", "Error: " + e.getMessage());
                         }
-                    }
-                } else {
-                    Log.d("doctor", "Error: " + e.getMessage());
-                }
-                adapter.setList(data);
+                        adapter.setList(data);
             }
         });
 
@@ -138,9 +138,6 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
