@@ -1,6 +1,5 @@
 package nirma.finna_be_meme;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,7 +35,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class DoctorList extends AppCompatActivity implements ClickListener {
+public class DoctorList extends AppCompatActivity implements ClickListener{
 
     private RecyclerView recyclerview;
     private AdapterDoctorlist adapter;
@@ -76,52 +74,49 @@ public class DoctorList extends AppCompatActivity implements ClickListener {
         GPSTracker gps = new GPSTracker(this);
         double latitude = gps.getLatitude();
         double longitude = gps.getLongitude();
-        Log.d("GPS", latitude + "," + longitude);
-        ParseGeoPoint point = new ParseGeoPoint(latitude, longitude);
+        Log.d("GPS",latitude+","+longitude);
+        ParseGeoPoint point = new ParseGeoPoint(latitude,longitude);
         //////////////////////////////
 
-//        query.whereEqualTo("Speciality",speciality);
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
-        if (latitude != 0.0 && longitude != 0.0)
-            query.whereWithinKilometers("location", point, 50);////static value 10km
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, com.parse.ParseException e) {
-                if (e == null) {
-                    for (int i = 0; i < list.size(); i++) {
-                        String Speciality = (String) list.get(i).get("Speciality");
-                        Log.d("doctor1", speciality + "," + Speciality);
-                        if (speciality.equalsIgnoreCase(Speciality)) {
-                            int Doctorid = (int) list.get(i).get("Doctorid");
-//                          String Speciality = (String) list.get(i).get("Speciality");
-                            String Doctor_name = (String) list.get(i).get("Doctor_name");
-                            ArrayList<String> Degrees = (ArrayList<String>) list.get(i).get("Degrees");
-                            String Fees = (String) list.get(i).get("Fees");
-                            String Experience = (String) list.get(i).get("Experience");
-                            String Likes = (String) list.get(i).get("Likes");
-                            String email = (String) list.get(i).get("email");
-                            ArrayList<String> Days = (ArrayList<String>) list.get(i).get("Days");
-                            ArrayList<String> Time = (ArrayList<String>) list.get(i).get("Time");
-                            InformationDoctorlist current = new InformationDoctorlist();
-                            current.Doctor_name = Doctor_name;
-                            current.Speciality = Speciality;
-                            current.Degrees = Degrees;
-                            current.Fees = Fees;
-                            current.Experience = Experience;
-                            current.Likes = Likes;
-                            current.email = email;
-                            current.Days = Days;
-                            current.Time = Time;
-                            current.Doctorid = Doctorid;//current.uri=uri;
-                            data.add(current);
-                            Log.d("doctor1", "hello this is katha123" + data.size());
-                            // }
+                if(latitude!=0.0 && longitude!=0.0)
+                    query.whereWithinKilometers("location",point,10);////static value 10km
+                query.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(List<ParseObject> list, com.parse.ParseException e) {
+                        if (e == null) {
+
+                            for (int i = 0; i < list.size(); i++) {
+                                String Speciality = (String) list.get(i).get("Speciality");
+                                Log.d("doctor1", speciality + Speciality );
+                                if (speciality.equalsIgnoreCase(Speciality)) {
+                                    int Doctorid = (int) list.get(i).get("Doctorid");
+                                    String Doctor_name = (String) list.get(i).get("Doctor_name");
+                                    ArrayList<String> Degrees = (ArrayList<String>) list.get(i).get("Degrees");
+                                    String Fees = (String) list.get(i).get("Fees");
+                                    String Experience = (String) list.get(i).get("Experience");
+                                    String Likes=(String)list.get(i).get("Likes");
+                                    ArrayList<String> Days = (ArrayList<String>) list.get(i).get("Days");
+                                    ArrayList<String> Time=(ArrayList<String>)list.get(i).get("Time");
+                                    InformationDoctorlist current = new InformationDoctorlist();
+                                    current.Doctor_name = Doctor_name;
+                                    current.Speciality = Speciality;
+                                    current.Degrees = Degrees;
+                                    current.Fees = Fees;
+                                    current.Experience = Experience;
+                                    current.Likes = Likes;
+                                    current.Days = Days;
+                                    current.Time = Time;
+                                    current.Doctorid=Doctorid;//current.uri=uri;
+                                    data.add(current);
+                                    Log.d("doctor1", "hello this is katha123" + data.size());
+                                    // }
+                                }
+                            }
+                        } else {
+                            Log.d("doctor", "Error: " + e.getMessage());
                         }
-                    }
-                } else {
-                    Log.d("doctor", "Error: " + e.getMessage());
-                }
-                adapter.setList(data);
+                        adapter.setList(data);
             }
         });
 
@@ -143,9 +138,6 @@ public class DoctorList extends AppCompatActivity implements ClickListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -160,14 +152,13 @@ public class DoctorList extends AppCompatActivity implements ClickListener {
 
     @Override
     public void onClick(View view, int position) {
-        Intent i = new Intent(DoctorList.this, DoctorDetails.class);
-        i.putExtra("name", data.get(position).Doctor_name);
-        i.putStringArrayListExtra("qual", data.get(position).Degrees);
-        i.putExtra("Speciality", data.get(position).Speciality);
-        i.putStringArrayListExtra("open_hours", data.get(position).Time);
-        i.putStringArrayListExtra("open_days", data.get(position).Days);
-        i.putExtra("hhi", "hi");
-        i.putExtra("email",data.get(position).email);
+        Intent i = new Intent(DoctorList.this,DoctorDetails.class);
+        i.putExtra("name",data.get(position).Doctor_name);
+        i.putExtra("qual",data.get(position).Degrees);
+        i.putExtra("Speciality",data.get(position).Speciality);
+        i.putExtra("open_hours",data.get(position).Time);
+        i.putExtra("open_days",data.get(position).Days);
+        i.putExtra("hhi","hi");
         //put all other extras that can be passed to the activity
         startActivity(i);
     }

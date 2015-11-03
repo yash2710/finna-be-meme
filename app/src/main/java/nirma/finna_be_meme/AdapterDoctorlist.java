@@ -20,7 +20,6 @@ import com.parse.ParseQuery;
 
 import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,37 +27,14 @@ import java.util.List;
  * Created by rajiv on 04-09-2015.
  */
 public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.MyViewHolder> {
-    //private final ArrayList<Object> appoint;
+
     private LayoutInflater inflater;
     private Context context;
     List<InformationDoctorlist> data = Collections.emptyList();
 
-    //    class Appoint {
-//        int Doctorid;
-//        String Doctor_name;
-//        Stringxmlns:android="http://schemas.android.com/apk/res/android" Speciality;
-//        String Degrees;
-//        String city;
-//        int Fees;
-//        int Experience;
-//        Drawable photo;
-//        public Appoint(){}
-//        public Appoint(int Doctorid,String Doctor_name,String Speciality,String Degrees,String city,int Fees,int Experience,Drawable photo){
-//            this.Doctorid=Doctorid;
-//            this.Doctor_name=Doctor_name;
-//            this.Speciality=Speciality;
-//            this.Degrees=Degrees;
-//            this.city=city;
-//            this.Fees=Fees;
-//            this.Experience=Experience;
-//            this.photo=photo;
-//        }
-//    }
-    public AdapterDoctorlist(Context context){//, List<InformationDoctorlist> data) {
+    public AdapterDoctorlist(Context context){
         this.context=context;
         inflater = LayoutInflater.from(context);
-        //----------this.data = data;-----
-
     }
 
     @Override
@@ -80,15 +56,8 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
         InformationDoctorlist current = data.get(position);
         holder.Doctor_name.setText(current.Doctor_name);
         holder.Fees.setText("Fees:" + current.Fees);
-        String Degrees = "";
-        for (String s : current.Degrees)
-        {
-            Degrees += s + " ";
-        }
-        holder.Degrees.setText(Degrees);
-        //holder.Degrees.setText(current.Degrees);
+        holder.Degrees.setText(current.Degrees.toString());
         holder.Experience.setText(current.Experience + " yrs exp.");
-//        holder.Speciality.setText(current.Speciality);
         holder.Likes.setText(current.Likes);
 
     }
@@ -108,35 +77,12 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
         TextView Likes;
         public MyViewHolder(View itemView) {
             super(itemView);
-
-            // Get the ImageView from
-            // main.xml
-            // Set the Bitmap into the
-            // ImageView
             Doctor_name=(TextView)itemView.findViewById(R.id.Doctor_name);
-//            Speciality=(TextView) itemView.findViewById(R.id.Speciality);
             Degrees=(TextView) itemView.findViewById(R.id.Degrees);
             Fees=(TextView) itemView.findViewById(R.id.Fees);
             Experience = (TextView) itemView.findViewById(R.id.Experience);
             Likes = (TextView) itemView.findViewById(R.id.likes);
-//            Photo = (ImageView)itemView.findViewById(R.id.Photo);
-            //photo=(ImageView) itemView.findViewById(R.id.photo);
-//            Doctor_name.setOnClickListener(this);
-//            Speciality.setOnClickListener(this);
-//            Degrees.setOnClickListener(this);
-//            Fees.setOnClickListener(this);
-//            Experience.setOnClickListener(this);
-
         }
-
-//        @Override
-//        public void onClick(View v) {
-//            Log.d("katha", "hello111");
-//            Intent i = new Intent(context,DoctorDetails.class);
-//            i.putExtra("hhi", "hi");
-//            //i.putExtra("Doctorid",(String)title.getText());
-//            context.startActivity(i);
-//        }
     }
 }
 

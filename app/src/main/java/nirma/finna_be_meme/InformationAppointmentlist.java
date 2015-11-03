@@ -5,4 +5,7 @@ package nirma.finna_be_meme;
  */
 public class InformationAppointmentlist {
     int App_ID;
+    String Doctor_name;
+    String Timestamp;
+    String confirm;
 }
