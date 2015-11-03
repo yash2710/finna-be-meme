@@ -60,7 +60,7 @@ public class home extends AppCompatActivity implements ClickListener {
                          date = list.get(i).getDate("App_date");
                         Log.d("date",date.toString());
                         //String contact=(String) list.get(i).get("contact");
-                        obid=list.get(i).getObjectId().toString();
+                        obid=list.get(i).getObjectId();
                         Appoint a = new Appoint(id, date,obid);
                         //Appoint a = new Appoint(id,name,date,contact);
                         appoint1.add(a);

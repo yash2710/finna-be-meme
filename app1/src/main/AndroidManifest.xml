@@ -40,6 +40,10 @@
             android:name=".profile"
             android:label="@string/title_activity_profile" >
         </activity>
+        <activity
+            android:name=".PendingActivity"
+            android:label="@string/title_activity_pending" >
+        </activity>
     </application>
 
 </manifest>
