@@ -18,4 +18,5 @@
     <string name="Switch">Pending</string>
     <string name="pending">Pending</string>
     <string name="title_activity_profile">profile</string>
+    <string name="title_activity_pending">PendingActivity</string>
 </resources>
