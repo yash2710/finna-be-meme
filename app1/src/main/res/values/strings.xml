@@ -7,7 +7,7 @@
     <string name="pass_hint">password</string>
     <string name="login_btn">Login</string>
     <string name="email_hint">E-mail address</string>
-    <string name="title_activity_home">home</string>
+    <string name="title_activity_home"></string>
     <string name="login_page">LOGIN</string>
     <string name="appoint_me">Appoint Me!</string>
     <string name="title_activity_test">test</string>
@@ -17,4 +17,6 @@
     <string name="title_activity_edit">edit</string>
     <string name="Switch">Pending</string>
     <string name="pending">Pending</string>
+    <string name="title_activity_profile">profile</string>
+    <string name="title_activity_pending">PendingActivity</string>
 </resources>

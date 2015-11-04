@@ -2,6 +2,7 @@ package nirma.finna_be_meme;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -63,6 +64,12 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
         holder.Degrees.setText(degree);
         holder.Experience.setText(current.Experience + " yrs exp.");
         holder.Likes.setText(current.Likes);
+        try {
+            holder.Photo.setImageBitmap(BitmapFactory.decodeByteArray(current.photo, 0, current.photo.length));
+        }catch (Exception e){}
+    }
+
+    public void setPhoto(int position){
 
     }
 
@@ -79,8 +86,10 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
         TextView Fees;
         TextView Experience;
         TextView Likes;
+        ImageView Photo;
         public MyViewHolder(View itemView) {
             super(itemView);
+            Photo = (ImageView) itemView.findViewById(R.id.Photo);
             Doctor_name=(TextView)itemView.findViewById(R.id.Doctor_name);
             Degrees=(TextView) itemView.findViewById(R.id.Degrees);
             Fees=(TextView) itemView.findViewById(R.id.Fees);

@@ -2,6 +2,7 @@ package nirma.finna_be_meme;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -31,6 +33,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
@@ -111,14 +114,28 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected Dialog onCreateDialog(int id) {
-        if (id == APP_ID)
-            return new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                    appd.set(i, i1, i2);
-                    appointmentdate.setText(i2 + "/" + (i1 + 1) + "/" + i);
-                }
-            }, appd.get(Calendar.YEAR), appd.get(Calendar.MONTH), appd.get(Calendar.DATE));
+        switch(id) {
+            case 1:
+                return new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        appd.set(i, i1, i2);
+                        appointmentdate.setText(i2 + "/" + (i1 + 1) + "/" + i);
+                        showDialog(2);
+                    }
+                }, appd.get(Calendar.YEAR), appd.get(Calendar.MONTH), appd.get(Calendar.DATE));
+
+            case 2:
+                return new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener(){
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                        appd.set(Calendar.HOUR,i);
+                        appd.set(Calendar.MINUTE, i1);
+                        appd.set(Calendar.ZONE_OFFSET, cal.get(Calendar.ZONE_OFFSET));
+                        appointmentdate.setText(appointmentdate.getText().toString() + " " + i + ":" + i1);
+                    }
+                }, appd.get(Calendar.HOUR_OF_DAY),appd.get(Calendar.MINUTE),true);
+        }
         return super.onCreateDialog(id);
     }
 
@@ -179,6 +196,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             }
                         }
                     });
+                    ParseObject patient = new ParseObject("appointment_user");
+                    patient.put("P_email", email);
+                    patient.put("D_email", bundle.getString("email"));
+                    patient.put("Problem_description", problem.getText().toString());
+                    patient.put("App_date", appd);
+                    patient.put("doctor_confirm", false);
+                    patient.put("patient_confirm", true);
 
 
                     patient.saveInBackground(new SaveCallback() {
@@ -193,6 +217,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             }
                         }
                     });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.d("error", "error");
+                }
             }
         }
     }

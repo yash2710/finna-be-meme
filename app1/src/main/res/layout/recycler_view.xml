@@ -59,18 +59,6 @@
             android:layout_weight="0.03"
             android:textColor="#ff000000" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pending"
-            android:id="@+id/button"
-            android:layout_gravity="center_horizontal"
-            android:background="#ffff3d06"
-            android:layout_alignTop="@+id/recycler_view1"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
     </RelativeLayout>
 
     <include layout="@layout/seperator"/>

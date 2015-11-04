@@ -1,5 +1,6 @@
 package nirma.finna_be_meme;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -43,7 +44,7 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
     private String speciality;
     RadioGroup dis_select;
     Bundle i;
-
+    ProgressDialog p = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,10 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
                 if(latitude!=0.0 && longitude!=0.0)
                     query.whereWithinKilometers("location",point,10);////static value 10km
+        p=new ProgressDialog(this);
+        p.setMessage("Loading");
+        p.setCancelable(false);
+        p.show();
                 query.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> list, com.parse.ParseException e) {
@@ -99,8 +104,13 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
                                     String Likes=(String)list.get(i).get("Likes");
                                     ArrayList<String> Days = (ArrayList<String>) list.get(i).get("Days");
                                     ArrayList<String> Time=(ArrayList<String>)list.get(i).get("Time");
-                                    InformationDoctorlist current = new InformationDoctorlist();
+                                    final InformationDoctorlist current = new InformationDoctorlist();
                                     current.Doctor_name = Doctor_name;
+                                    try {
+                                        current.photo = list.get(i).getParseFile("Photo").getData();
+                                    } catch (com.parse.ParseException e1) {
+                                        e1.printStackTrace();
+                                    }
                                     current.Speciality = Speciality;
                                     current.Degrees = Degrees;
                                     current.Fees = Fees;
@@ -119,13 +129,19 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
                             Log.d("doctor", "Error: " + e.getMessage());
                         }
                         adapter.setList(data);
+                        hidePDialog();
             }
         });
 
         Log.d("doctor1", "data size" + data.size());
     }
 
-
+    void hidePDialog(){
+        if(p!=null){
+            p.dismiss();
+            p=null;
+        }
+    }
     @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.
@@ -162,6 +178,7 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
         i.putExtra("open_days",data.get(position).Days);
         i.putExtra("hhi","hi");
         i.putExtra("email",data.get(position).email);
+        i.putExtra("photo",data.get(position).photo);
         //put all other extras that can be passed to the activity
         startActivity(i);
     }

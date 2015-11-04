@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,29 +23,31 @@ import java.util.List;
 
 public class home extends AppCompatActivity implements ClickListener {
     private RecyclerView view;
-    String id;
+    String id,obid;
+    Toolbar toolbar;
     Date date;
     //private RecyclerView.LayoutManager mLayoutManager;
     private MyAdapter mAdapter;
     List<Appoint> appoint1=Collections.emptyList();
+    String username;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         view=(RecyclerView)findViewById(R.id.recycler_view);
 
         view.setHasFixedSize(true);
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         view.setLayoutManager(mLayoutManager);
-
-
         mAdapter = new MyAdapter(this);
         view.setAdapter(mAdapter);
         view.addOnItemTouchListener(new RecyclerTouchListener(this,view,this));
         appoint1=new ArrayList<>();
-        String username=getIntent().getExtras().getString("email");
+         username=getIntent().getExtras().getString("email");
         ParseQuery<ParseObject> query = ParseQuery.getQuery("appointment_user");
         query.whereEqualTo("D_email",username);
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -53,13 +56,13 @@ public class home extends AppCompatActivity implements ClickListener {
                 if (e == null) {
                     Log.d("D_email", "Retrieved " + list.size());
                     for (int i = 0; i < list.size(); i++) {
-
                          id = (String) list.get(i).get("P_email");
                         //String name = (String) list.get(i).get("p_name");
                          date = list.get(i).getDate("App_date");
+                        Log.d("date",date.toString());
                         //String contact=(String) list.get(i).get("contact");
-
-                        Appoint a = new Appoint(id, date);
+                        obid=list.get(i).getObjectId();
+                        Appoint a = new Appoint(id, date,obid);
                         //Appoint a = new Appoint(id,name,date,contact);
                         appoint1.add(a);
                         Log.d("hi", a.id + a.date);
@@ -96,7 +99,20 @@ public class home extends AppCompatActivity implements ClickListener {
         if (id == R.id.action_settings) {
             return true;
         }
+        if (id == R.id.profile){
+            Intent i=new Intent(home.this,profile.class);
+            i.putExtra("email",username);
+            startActivity(i);
 
+            return true;
+        }
+        if (id == R.id.pending){
+            Intent i=new Intent(home.this,PendingActivity.class);
+            i.putExtra("email",username);
+            startActivity(i);
+
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -114,6 +130,7 @@ public class home extends AppCompatActivity implements ClickListener {
         i.putExtra("email",appoint1.get(position).id);
         //i.putExtra("name",appoint1.get(position).name);
         i.putExtra("date",appoint1.get(position).date.toString());
+        i.putExtra("obid",appoint1.get(position).obid);
         //i.putExtra("contact",appoint1.get(position).contact);
         startActivity(i);
 

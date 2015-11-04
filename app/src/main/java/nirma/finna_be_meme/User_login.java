@@ -1,6 +1,7 @@
 package nirma.finna_be_meme;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class User_login extends AppCompatActivity implements View.OnClickListene
     EditText lemail;
     EditText lpassword;
     Button llogin, register;
-
+    ProgressDialog p = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,12 @@ public class User_login extends AppCompatActivity implements View.OnClickListene
         register.setOnClickListener(this);
     }
 
+    void hidePDialog(){
+        if(p!=null){
+            p.dismiss();
+            p = null;
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -70,6 +77,10 @@ public class User_login extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v == findViewById(R.id.loginb)) {
+            p = new ProgressDialog(this);
+            p.setMessage("Verifying Credentials");
+            p.setCancelable(false);
+            p.show();
             final String email = lemail.getText().toString();
             final String password = lpassword.getText().toString();
             Log.d("login", email + " " + password);
@@ -79,6 +90,7 @@ public class User_login extends AppCompatActivity implements View.OnClickListene
             query.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> list, ParseException e) {
+                    hidePDialog();
                     if (e == null) {
                         if (list.size() == 0)
                             Toast.makeText(User_login.this, "account does not exist or wrong combination of emailid and password",

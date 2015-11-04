@@ -21,24 +21,27 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".login"
-            android:label="@string/title_activity_login" >
+            android:name=".login">
         </activity>
         <activity
-            android:name=".home"
-            android:label="@string/title_activity_home" >
+            android:name=".home">
         </activity>
         <activity
-            android:name=".test"
-            android:label="@string/title_activity_test" >
+            android:name=".patient_details">
         </activity>
         <activity
-            android:name=".patient_details"
-            android:label="@string/title_activity_patient_details" >
+            android:name=".edit">
         </activity>
         <activity
-            android:name=".edit"
-            android:label="@string/title_activity_edit" >
+            android:name=".profile">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity
+            android:name=".PendingActivity">
         </activity>
     </application>
 

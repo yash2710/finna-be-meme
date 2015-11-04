@@ -31,5 +31,6 @@ public class InformationDoctorlist {
     String email;
     ArrayList<String> Days;
     ArrayList<String> Time;
+    byte[] photo;
     //Drawable photo;
 }

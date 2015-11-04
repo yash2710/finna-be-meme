@@ -1,5 +1,6 @@
 package com.example.tanha.finna_be_meme1;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ public class login extends AppCompatActivity {
     protected EditText lemail;
     protected EditText lpassword;
     protected Button llogin;
-
+    ProgressDialog p;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +55,13 @@ public class login extends AppCompatActivity {
             public void onClick(View v) {
                 final String email=lemail.getText().toString();
                 String password=lpassword.getText().toString();
+                p = new ProgressDialog(login.this);
+                p.setMessage("Verifying Credentials");
+                p.setCancelable(false);
+                p.show();
                 ParseUser.logInInBackground(email, password, new LogInCallback() {
                     public void done(ParseUser user, ParseException e) {
+                        hidePDialog();
                         if (user != null) {
                             // Hooray! The user is logged in.
                             Intent i = new Intent(login.this, home.class);
@@ -93,5 +99,12 @@ public class login extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    void hidePDialog(){
+        if(p!=null){
+            p.dismiss();
+            p = null;
+        }
     }
 }
