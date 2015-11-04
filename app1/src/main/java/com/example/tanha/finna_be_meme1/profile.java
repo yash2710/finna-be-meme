@@ -114,6 +114,19 @@ public class profile extends AppCompatActivity implements View.OnClickListener {
         if(v==findViewById(R.id.done)) {
             Intent i = new Intent(this, home.class);
             i.putExtra("email",username);
+            ParseUser user=ParseUser.getCurrentUser();
+            user.put("Doctor_name",name.getText().toString());
+            user.put("Speciality", sp.getText().toString());
+            user.put("Experience", ex.getText().toString());
+            user.put("Fees", fee.getText().toString());
+            user.put("Mobile", mobile.getText().toString());
+            String[] q=qual.getText().toString().split(",");
+            String[] t=time.getText().toString().split("-");
+            String[] d=day.getText().toString().split(",");
+            user.put("Degrees",q);
+            user.put("Days",d);
+            user.put("Time",t);
+            user.saveInBackground();
             startActivity(i);
         }
     }

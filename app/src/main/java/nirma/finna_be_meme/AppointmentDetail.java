@@ -16,6 +16,8 @@ import com.parse.FindCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,17 +29,17 @@ public class AppointmentDetail extends AppCompatActivity implements ClickListene
     private AdapterAppointment adapter;
     private List<InformationAppointmentlist> data = Collections.emptyList();
     Bundle i;
-    String email;
-
+    String email=MainActivity.email;
+    String Doctor_name=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-        this.setTitle("List of Doctors");
+        this.setTitle("Appointments");
         i = getIntent().getExtras();
-        email = i.getString("email");
+       // email = i.getString("email");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         recyclerview = (RecyclerView) findViewById(R.id.appointment);
@@ -53,8 +55,9 @@ public class AppointmentDetail extends AppCompatActivity implements ClickListene
             public void done(List<ParseObject> list, com.parse.ParseException e) {
                 if (e == null) {
                     for (int i = 0; i < list.size(); i++) {
-                        String Doctor_name = (String) list.get(i).get("Doctor_name");
-                        String Timestamp = (String) list.get(i).get("App_date");
+                        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                        String Timestamp = df.format(list.get(i).get("App_date"));
+                        Doctor_name=(String)list.get(i).get("Doctor_name");
                         String confirm = "";
                         if ((boolean) list.get(i).get("doctor_confirm") && (boolean) list.get(i).get("patient_confirm"))
                             confirm = "Confirmed";

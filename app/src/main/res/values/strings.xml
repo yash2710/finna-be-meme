@@ -34,4 +34,5 @@
     <string name="title_activity_user_login">User_login</string>
     <string name="title_activity_registration">Registration</string>
     <string name="title_activity_appointment_detail">AppointmentDetail</string>
+    <string name="title_activity_searchlist">Searchlist</string>
 </resources>

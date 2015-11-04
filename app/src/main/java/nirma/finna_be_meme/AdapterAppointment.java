@@ -40,7 +40,7 @@ public class AdapterAppointment extends RecyclerView.Adapter<AdapterAppointment.
     public void onBindViewHolder(MyViewHolder holder, int position) {
         InformationAppointmentlist current = data.get(position);
         holder.Doctor_name.setText(current.Doctor_name);
-        holder.Timestamp.setText(current.Timestamp + " yrs exp.");
+        holder.Timestamp.setText(current.Timestamp);
         holder.confirm.setText(current.confirm);
     }
 

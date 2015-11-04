@@ -77,6 +77,10 @@
             android:name=".AppointmentDetail"
             android:label="@string/title_activity_appointment_detail" >
         </activity>
+        <activity
+            android:name=".Searchlist"
+            android:label="@string/title_activity_searchlist" >
+        </activity>
     </application>
 
 </manifest>
