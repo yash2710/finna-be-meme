@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private View containerview;
     private ViewPager mPager;
     Bundle bundle;
+    Button go;
     public static String email;
     private SlidingTabLayout mTabs;
     CharSequence Titles[] = {"Home", "Events"};
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         bundle = getIntent().getExtras();
+        go=(Button)findViewById(R.id.button);
         email = bundle.getString("email");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -84,12 +87,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, Settings.class));
         }
 
-        if (id == R.id.navigate) {
-            startActivity(new Intent(this, SubActivity.class));
-        }
+//        if (id == R.id.navigate) {
+//            startActivity(new Intent(this, SubActivity.class));
+//        }
 
         if (id == R.id.details) {
-            Intent i = new Intent(MainActivity.this, DoctorDetails.class);
+            Intent i = new Intent(MainActivity.this, AppointmentDetail.class);
             i.putExtra("hhi", "hi");
             startActivity(i);
         }
