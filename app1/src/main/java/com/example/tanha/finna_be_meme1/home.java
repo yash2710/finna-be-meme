@@ -29,6 +29,7 @@ public class home extends AppCompatActivity implements ClickListener {
     //private RecyclerView.LayoutManager mLayoutManager;
     private MyAdapter mAdapter;
     List<Appoint> appoint1=Collections.emptyList();
+    String username;
 
 
     @Override
@@ -46,7 +47,7 @@ public class home extends AppCompatActivity implements ClickListener {
         view.setAdapter(mAdapter);
         view.addOnItemTouchListener(new RecyclerTouchListener(this,view,this));
         appoint1=new ArrayList<>();
-        String username=getIntent().getExtras().getString("email");
+         username=getIntent().getExtras().getString("email");
         ParseQuery<ParseObject> query = ParseQuery.getQuery("appointment_user");
         query.whereEqualTo("D_email",username);
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -100,6 +101,16 @@ public class home extends AppCompatActivity implements ClickListener {
         }
         if (id == R.id.profile){
             Intent i=new Intent(home.this,profile.class);
+            i.putExtra("email",username);
+            startActivity(i);
+
+            return true;
+        }
+        if (id == R.id.pending){
+            Intent i=new Intent(home.this,PendingActivity.class);
+            i.putExtra("email",username);
+            startActivity(i);
+
             return true;
         }
         return super.onOptionsItemSelected(item);

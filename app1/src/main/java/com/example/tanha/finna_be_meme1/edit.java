@@ -2,6 +2,7 @@ package com.example.tanha.finna_be_meme1;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,8 +81,22 @@ public class edit extends AppCompatActivity implements View.OnClickListener{
             query.getInBackground(obid, new GetCallback<ParseObject>() {
                 @Override
                 public void done(ParseObject parseObject, ParseException e) {
-                    String dd=date1+time1;
-                    parseObject.put("App_date",new Date(dd));
+                    String[] datef=date1.split("/");
+                    int datei[]=new int[datef.length];
+                    for(int i=0;i<datef.length;i++)
+                    {
+                        datei[i]=Integer.parseInt(datef[i]);
+                    }
+                    String[] timef=time1.split(":");
+                    int timei[]=new int[timef.length];
+                    for(int i=0;i<timef.length;i++)
+                    {
+                        timei[i]=Integer.parseInt(timef[i]);
+                    }
+                    Date datee=new Date(datei[0],datei[1],datei[2],timei[0],timei[1],00);
+
+                    parseObject.put("App_date",datee);
+                    Log.d("dateeeee", datef[0]);
                     parseObject.saveInBackground();
                 }
             });

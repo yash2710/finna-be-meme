@@ -35,6 +35,7 @@ public class PendingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
         adapter = new MyAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new ClickListener() {
