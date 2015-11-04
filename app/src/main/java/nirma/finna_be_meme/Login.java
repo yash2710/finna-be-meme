@@ -180,7 +180,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                 patient.put("P_email", email);
                                 patient.put("D_email", bundle.getString("email", ""));
                                 patient.put("Problem_description", problem.getText().toString());
-                                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:MM");
                                 try {
                                     patient.put("App_date", dateFormat.parse(appointmentdate.getText().toString()));
                                 } catch (java.text.ParseException e1) {
@@ -190,39 +190,28 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                 patient.put("App_ID", appid);
                                 patient.put("doctor_confirm", false);
                                 patient.put("patient_confirm", true);
-                                patient.put("Doctor_name",DoctorDetails.dname);
+                                patient.put("Doctor_name", DoctorDetails.dname);
+                                patient.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(ParseException e) {
+                                        if (e == null)
+                                            Toast.makeText(getApplicationContext(), "appointment register", Toast.LENGTH_LONG).show();
+                                        else {
+                                            Toast.makeText(getApplicationContext(), "Sorry for inconvenionce!! There is some error :(", Toast.LENGTH_LONG).show();
+                                            Intent i = new Intent(Login.this, User_login.class);
+                                            startActivity(i);
+                                        }
+                                    }
+                                });
                             } else {
 
                             }
                         }
                     });
-                    ParseObject patient = new ParseObject("appointment_user");
-                    patient.put("P_email", email);
-                    patient.put("D_email", bundle.getString("email"));
-                    patient.put("Problem_description", problem.getText().toString());
-                    patient.put("App_date", appd);
-                    patient.put("doctor_confirm", false);
-                    patient.put("patient_confirm", true);
 
-
-                    patient.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if (e == null)
-                                Toast.makeText(getApplicationContext(),"appointment register", Toast.LENGTH_LONG).show();
-                            else {
-                                Toast.makeText(getApplicationContext(), "Sorry for inconvenionce!! There is some error :(", Toast.LENGTH_LONG).show();
-                                Intent i = new Intent(Login.this, User_login.class);
-                                startActivity(i);
-                            }
-                        }
-                    });
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.d("error", "error");
                 }
             }
         }
     }
 
-}
+

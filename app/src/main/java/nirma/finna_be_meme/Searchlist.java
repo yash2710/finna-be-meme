@@ -83,6 +83,11 @@ public class Searchlist extends AppCompatActivity implements ClickListener {
                         current.Doctor_name = Doctor_name;
                         current.Speciality = Speciality;
                         current.Degrees = Degrees;
+                        try {
+                            current.photo = list.get(i).getParseFile("Photo").getData();
+                        } catch (com.parse.ParseException e1) {
+                            e1.printStackTrace();
+                        }
                         current.Fees = Fees;
                         current.Experience = Experience;
                         current.Likes = Likes;
