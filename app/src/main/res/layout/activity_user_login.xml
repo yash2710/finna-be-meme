@@ -17,6 +17,7 @@
         android:layout_below="@+id/app_bar"
         android:layout_marginTop="57dp"
         android:hint="Enter Email"
+        android:text="tanhashah@gmail.com"
         android:inputType="textEmailAddress" />
 
 
@@ -30,6 +31,7 @@
         android:layout_centerVertical="true"
         android:layout_margin="16dp"
         android:ems="10"
+        android:text="yash"
         android:hint="Enter Password"
         android:inputType="textPassword" />
 

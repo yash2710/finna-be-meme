@@ -98,8 +98,20 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
                                     String Likes=(String)list.get(i).get("Likes");
                                     ArrayList<String> Days = (ArrayList<String>) list.get(i).get("Days");
                                     ArrayList<String> Time=(ArrayList<String>)list.get(i).get("Time");
-                                    InformationDoctorlist current = new InformationDoctorlist();
+                                    final InformationDoctorlist current = new InformationDoctorlist();
                                     current.Doctor_name = Doctor_name;
+                                    ParseFile file = (ParseFile) list.get(i).get("Photo");
+                                    file.getDataInBackground(new GetDataCallback() {
+                                        @Override
+                                        public void done(byte[] bytes, com.parse.ParseException e) {
+                                            if(e == null){
+                                                current.photo = bytes;
+                                                synchronized (adapter) {
+                                                    adapter.notify();
+                                                }
+                                            }
+                                        }
+                                    });
                                     current.Speciality = Speciality;
                                     current.Degrees = Degrees;
                                     current.Fees = Fees;
@@ -158,7 +170,7 @@ public class DoctorList extends AppCompatActivity implements ClickListener{
         i.putExtra("Speciality",data.get(position).Speciality);
         i.putExtra("open_hours",data.get(position).Time);
         i.putExtra("open_days",data.get(position).Days);
-        i.putExtra("hhi","hi");
+        i.putExtra("photo",data.get(position).photo);
         //put all other extras that can be passed to the activity
         startActivity(i);
     }

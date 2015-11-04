@@ -109,14 +109,14 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     public static void saveToPreference(Context context, String prefrencename, String preferencevalue) {
-        SharedPreferences sharedpreferences = context.getSharedPreferences(PREF_FILE_NAME, context.MODE_PRIVATE);
+        SharedPreferences sharedpreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(prefrencename, preferencevalue);
         editor.apply();
     }
 
     public static String readFromPreference(Context context, String prefrencename, String defaultvalue) {
-        SharedPreferences sharedpreferences = context.getSharedPreferences(PREF_FILE_NAME, context.MODE_PRIVATE);
+        SharedPreferences sharedpreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         return sharedpreferences.getString(prefrencename, defaultvalue);
     }
 }
