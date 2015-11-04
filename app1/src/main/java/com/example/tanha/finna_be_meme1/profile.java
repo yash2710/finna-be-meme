@@ -42,6 +42,7 @@ public class profile extends AppCompatActivity implements View.OnClickListener {
         done.setOnClickListener(this);
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
+        ParseUser user = ParseUser.getCurrentUser();
         query.whereEqualTo("username", "dr_sanjiv@gmail.com");
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
@@ -52,7 +53,7 @@ public class profile extends AppCompatActivity implements View.OnClickListener {
                     sp1 = list.get(0).getString("Speciality");
                     ex1 = list.get(0).getString("Experience");
                     fee1 = list.get(0).getString("Fees");
-                    mobile1 = list.get(0).getString("Mobile");
+                    mobile1 = Long.toString(list.get(0).getLong("Mobile"));
                     ArrayList<String> Days = (ArrayList<String>) list.get(0).get("Days");
                     for(String s: Days){
                         day1+=s + ",";
@@ -113,6 +114,19 @@ public class profile extends AppCompatActivity implements View.OnClickListener {
         if(v==findViewById(R.id.done)) {
             Intent i = new Intent(this, home.class);
             i.putExtra("email",username);
+            ParseUser user=ParseUser.getCurrentUser();
+            user.put("Doctor_name",name.getText().toString());
+            user.put("Speciality", sp.getText().toString());
+            user.put("Experience", ex.getText().toString());
+            user.put("Fees", fee.getText().toString());
+            user.put("Mobile", mobile.getText().toString());
+            String[] q=qual.getText().toString().split(",");
+            String[] t=time.getText().toString().split("-");
+            String[] d=day.getText().toString().split(",");
+            user.put("Degrees",q);
+            user.put("Days",d);
+            user.put("Time",t);
+            user.saveInBackground();
             startActivity(i);
         }
     }

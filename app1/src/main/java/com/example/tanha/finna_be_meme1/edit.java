@@ -48,6 +48,13 @@ public class edit extends AppCompatActivity implements View.OnClickListener{
         p_id.setText(email);
         p_name.setText(name);
         date.setText(date1);
+        date.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Toast.makeText(edit.this, "",Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
         time.setText(time1);
         contact.setText(contact1);
     }
@@ -93,10 +100,10 @@ public class edit extends AppCompatActivity implements View.OnClickListener{
                     {
                         timei[i]=Integer.parseInt(timef[i]);
                     }
-                    Date datee=new Date(datei[0],datei[1],datei[2],timei[0],timei[1],00);
+                    Date datee=new Date(datei[2],datei[1]-1,datei[0],timei[0],timei[1]);
 
                     parseObject.put("App_date",datee);
-                    Log.d("dateeeee", datef[0]);
+                    Log.d("dateeeee", datee.toString());
                     parseObject.saveInBackground();
                 }
             });
