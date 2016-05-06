@@ -26,57 +26,62 @@ public class login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        lemail=(EditText)findViewById(R.id.email);
-        lpassword=(EditText)findViewById(R.id.password);
-        lemail.setText("dr_sanjiv@gmail.com");
-        lpassword.setText("dr_sanjiv");
-        ParseUser user = new ParseUser();
-        //user.setUsername("dr_abc@yahoo.com");
-        //user.setPassword("abc");
-        //user.setEmail("abc@appointme.com");
+        if(ParseUser.getCurrentUser() == null) {
+            setContentView(R.layout.activity_login);
+            lemail = (EditText) findViewById(R.id.email);
+            lpassword = (EditText) findViewById(R.id.password);
+            lemail.setText("dr_sanjiv@gmail.com");
+            lpassword.setText("dr_sanjiv");
+            ParseUser user = new ParseUser();
+            //user.setUsername("dr_abc@yahoo.com");
+            //user.setPassword("abc");
+            //user.setEmail("abc@appointme.com");
 
-        user.signUpInBackground(new SignUpCallback() {
-            public void done(ParseException e) {
-                if (e == null) {
-                    // Hooray! Let them use the app now.
-                    //Toast.makeText(login.this, "hi", Toast.LENGTH_LONG).show();
-                } else {
-                    // Sign up didn't succeed. Look at the ParseException
-                    // to figure out what went wrong
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        llogin=(Button)findViewById(R.id.loginb);
-        llogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String email=lemail.getText().toString();
-                String password=lpassword.getText().toString();
-                p = new ProgressDialog(login.this);
-                p.setMessage("Verifying Credentials");
-                p.setCancelable(false);
-                p.show();
-                ParseUser.logInInBackground(email, password, new LogInCallback() {
-                    public void done(ParseUser user, ParseException e) {
-                        hidePDialog();
-                        if (user != null) {
-                            // Hooray! The user is logged in.
-                            Intent i = new Intent(login.this, home.class);
-                            i.putExtra("email",email);
-                            startActivity(i);
-                        } else {
-                            // Signup failed. Look at the ParseException to see what happened.
-                            Toast.makeText(login.this, "Failed to login...try again!", Toast.LENGTH_LONG).show();
-                        }
+            user.signUpInBackground(new SignUpCallback() {
+                public void done(ParseException e) {
+                    if (e == null) {
+                        // Hooray! Let them use the app now.
+                        //Toast.makeText(login.this, "hi", Toast.LENGTH_LONG).show();
+                    } else {
+                        // Sign up didn't succeed. Look at the ParseException
+                        // to figure out what went wrong
+                        e.printStackTrace();
                     }
-                });
+                }
+            });
 
-            }
-        });
+            llogin = (Button) findViewById(R.id.loginb);
+            llogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final String email = lemail.getText().toString();
+                    String password = lpassword.getText().toString();
+                    p = new ProgressDialog(login.this);
+                    p.setMessage("Verifying Credentials");
+                    p.setCancelable(false);
+                    p.show();
+                    ParseUser.logInInBackground(email, password, new LogInCallback() {
+                        public void done(ParseUser user, ParseException e) {
+                            hidePDialog();
+                            if (user != null) {
+                                // Hooray! The user is logged in.
+                                Intent i = new Intent(login.this, home.class);
+                                i.putExtra("email", email);
+                                startActivity(i);
+                            } else {
+                                // Signup failed. Look at the ParseException to see what happened.
+                                Toast.makeText(login.this, "Failed to login...try again!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
 
+                }
+            });
+        }else{
+            Intent i = new Intent(login.this, home.class);
+            i.putExtra("email", ParseUser.getCurrentUser().getUsername());
+            startActivity(i);
+        }
     }
 
     @Override
