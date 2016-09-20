@@ -1,5 +1,6 @@
 package com.example.tanha.finna_be_meme1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -88,25 +89,25 @@ public class edit extends AppCompatActivity implements View.OnClickListener{
             query.getInBackground(obid, new GetCallback<ParseObject>() {
                 @Override
                 public void done(ParseObject parseObject, ParseException e) {
-                    String[] datef=date1.split("/");
-                    int datei[]=new int[datef.length];
-                    for(int i=0;i<datef.length;i++)
-                    {
-                        datei[i]=Integer.parseInt(datef[i]);
+                    String[] datef = date1.split("/");
+                    int datei[] = new int[datef.length];
+                    for (int i = 0; i < datef.length; i++) {
+                        datei[i] = Integer.parseInt(datef[i]);
                     }
-                    String[] timef=time1.split(":");
-                    int timei[]=new int[timef.length];
-                    for(int i=0;i<timef.length;i++)
-                    {
-                        timei[i]=Integer.parseInt(timef[i]);
+                    String[] timef = time1.split(":");
+                    int timei[] = new int[timef.length];
+                    for (int i = 0; i < timef.length; i++) {
+                        timei[i] = Integer.parseInt(timef[i]);
                     }
-                    Date datee=new Date(datei[2],datei[1]-1,datei[0],timei[0],timei[1]);
+                    Date datee = new Date(datei[2], datei[1] - 1, datei[0], timei[0], timei[1]);
 
-                    parseObject.put("App_date",datee);
+                    parseObject.put("App_date", datee);
                     Log.d("dateeeee", datee.toString());
                     parseObject.saveInBackground();
                 }
             });
+            Intent i=new Intent(this,home.class);
+            startActivity(i);
             Toast.makeText(edit.this,"Done!", Toast.LENGTH_LONG).show();
         }
 

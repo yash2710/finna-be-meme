@@ -14,6 +14,7 @@ import android.view.View;
 import com.parse.FindCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,7 +48,7 @@ public class home extends AppCompatActivity implements ClickListener {
         view.setAdapter(mAdapter);
         view.addOnItemTouchListener(new RecyclerTouchListener(this,view,this));
         appoint1=new ArrayList<>();
-         username=getIntent().getExtras().getString("email");
+         username=ParseUser.getCurrentUser().getUsername();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("appointment_user");
         query.whereEqualTo("D_email",username);
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -112,6 +113,11 @@ public class home extends AppCompatActivity implements ClickListener {
             startActivity(i);
 
             return true;
+        }
+        if(id == R.id.logout){
+            ParseUser.logOut();
+            startActivity(new Intent(this, login.class));
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

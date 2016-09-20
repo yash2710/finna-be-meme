@@ -1,10 +1,7 @@
 package nirma.finna_be_meme;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,14 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.parse.FindCallback;
-import com.parse.ParseFile;
-import com.parse.ParseImageView;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,12 +18,12 @@ import java.util.List;
  */
 public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.MyViewHolder> {
 
+    List<InformationDoctorlist> data = Collections.emptyList();
     private LayoutInflater inflater;
     private Context context;
-    List<InformationDoctorlist> data = Collections.emptyList();
 
-    public AdapterDoctorlist(Context context){
-        this.context=context;
+    public AdapterDoctorlist(Context context) {
+        this.context = context;
         inflater = LayoutInflater.from(context);
     }
 
@@ -46,10 +35,10 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
         return holder;
     }
 
-    public void setList(List<InformationDoctorlist> data){
-        this.data=data;
-        Log.d("doctor1","here");
-        notifyItemRangeChanged(0,data.size());
+    public void setList(List<InformationDoctorlist> data) {
+        this.data = data;
+        Log.d("doctor1", "here");
+        notifyItemRangeChanged(0, data.size());
     }
 
     @Override
@@ -57,25 +46,26 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
         InformationDoctorlist current = data.get(position);
         holder.Doctor_name.setText(current.Doctor_name);
         holder.Fees.setText("Fees:" + current.Fees);
-        String degree="";
-        for(String s : current.Degrees){
-            degree+=s;
+        String degree = "";
+        for (String s : current.Degrees) {
+            degree += s;
         }
         holder.Degrees.setText(degree);
         holder.Experience.setText(current.Experience + " yrs exp.");
         holder.Likes.setText(current.Likes);
         try {
             holder.Photo.setImageBitmap(BitmapFactory.decodeByteArray(current.photo, 0, current.photo.length));
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
 
-    public void setPhoto(int position){
+    public void setPhoto(int position) {
 
     }
 
     @Override
     public int getItemCount() {
-        Log.d("doctor"," "+data.size());
+        Log.d("doctor", " " + data.size());
         return data.size();
     }
 
@@ -87,12 +77,13 @@ public class AdapterDoctorlist extends RecyclerView.Adapter<AdapterDoctorlist.My
         TextView Experience;
         TextView Likes;
         ImageView Photo;
+
         public MyViewHolder(View itemView) {
             super(itemView);
             Photo = (ImageView) itemView.findViewById(R.id.Photo);
-            Doctor_name=(TextView)itemView.findViewById(R.id.Doctor_name);
-            Degrees=(TextView) itemView.findViewById(R.id.Degrees);
-            Fees=(TextView) itemView.findViewById(R.id.Fees);
+            Doctor_name = (TextView) itemView.findViewById(R.id.Doctor_name);
+            Degrees = (TextView) itemView.findViewById(R.id.Degrees);
+            Fees = (TextView) itemView.findViewById(R.id.Fees);
             Experience = (TextView) itemView.findViewById(R.id.Experience);
             Likes = (TextView) itemView.findViewById(R.id.likes);
         }

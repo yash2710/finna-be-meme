@@ -180,12 +180,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                 patient.put("P_email", email);
                                 patient.put("D_email", bundle.getString("email", ""));
                                 patient.put("Problem_description", problem.getText().toString());
-                                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:MM");
-                                try {
-                                    patient.put("App_date", dateFormat.parse(appointmentdate.getText().toString()));
-                                } catch (java.text.ParseException e1) {
-                                    e1.printStackTrace();
-                                }
+                                int day = appd.get(Calendar.DATE);
+                                int month = appd.get(Calendar.MONTH);
+                                int year = appd.get(Calendar.YEAR);
+                                int hour = appd.get(Calendar.HOUR_OF_DAY);
+                                int min = appd.get(Calendar.MINUTE);
+                                Date date = new Date(year,month-1,day,hour,min);
+                                patient.put("App_date", date);
                                 Log.d("login", "" + appid);
                                 patient.put("App_ID", appid);
                                 patient.put("doctor_confirm", false);
@@ -197,7 +198,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                         if (e == null)
                                             Toast.makeText(getApplicationContext(), "appointment register", Toast.LENGTH_LONG).show();
                                         else {
-                                            Toast.makeText(getApplicationContext(), "Sorry for inconvenionce!! There is some error :(", Toast.LENGTH_LONG).show();
+                                            Log.d("error", e.toString());
+                                            Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                                             Intent i = new Intent(Login.this, User_login.class);
                                             startActivity(i);
                                         }
